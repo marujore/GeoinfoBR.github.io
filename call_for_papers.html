@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEOINFO 2026 - Call for Papers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Paste the CSS from index.html here or use an external stylesheet */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Roboto', sans-serif; background-color: #ffffff; color: #333; line-height: 1.6; }
+        header { background-color: #c8ebfe; padding: 10px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .navbar { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 50px; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { color: #003366; text-decoration: none; font-weight: 500; font-size: 14px; padding: 8px 12px; border-radius: 4px; transition: background 0.3s; }
+        .nav-links a:hover { background-color: rgba(255,255,255,0.5); }
+        .nav-links a.active { background-color: rgba(255,255,255,0.7); font-weight: 700; }
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        h2 { color: #003366; border-bottom: 2px solid #c8ebfe; padding-bottom: 10px; margin-bottom: 20px; }
+        h3 { color: #0056b3; margin: 20px 0 10px; }
+        ul { margin-left: 20px; margin-bottom: 20px; }
+        li { margin-bottom: 5px; }
+        .hamburger { display: none; cursor: pointer; font-size: 24px; color: #003366; }
+        @media (max-width: 900px) {
+            .hamburger { display: block; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #c8ebfe; padding: 20px; box-shadow: 0 5px 5px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+        }
+        footer { background-color: #003366; color: white; text-align: center; padding: 20px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="index.html"><img src="logo.png" alt="GEOINFO Logo"></a></div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="call_for_papers.html" class="active">Call for Papers</a>
+                <a href="submission.html">Submission</a>
+                <a href="registration.html">Registration</a>
+                <a href="program.html">Program</a>
+                <a href="venue.html">Venue</a>
+                <a href="organization.html">Organization</a>
+                <a href="committee.html">Committee</a>
+                <a href="collection.html">Collection</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Topics of Interest</h2>
+        
+        <h3>Geospatial data engineering</h3>
+        <ul>
+            <li>Geospatial and spatiotemporal databases</li>
+            <li>Geospatial and spatiotemporal data modeling</li>
+            <li>Geospatial and spatiotemporal data warehouses</li>
+            <li>Geospatial metadata & Big geospatial data</li>
+            <li>Spatial data infrastructures</li>
+            <li>Geospatial APIs and Web services</li>
+            <li>Ontologies and geospatial semantics</li>
+            <li>Crowdsourcing and volunteered geographic information</li>
+        </ul>
+
+        <h3>Geospatial data analysis and visualization</h3>
+        <ul>
+            <li>Geospatial data analysis & mining</li>
+            <li>Moving objects data analysis</li>
+            <li>Geosimulation and dynamic modeling</li>
+            <li>Content-based image querying and geospatial computer vision</li>
+            <li>Spatiotemporal data visualization</li>
+            <li>Visual analytics of spatial and spatiotemporal data</li>
+            <li>Virtual reality and 3D GIS</li>
+            <li>Remote Sensing image analysis</li>
+            <li>Geospatial artificial intelligence</li>
+        </ul>
+
+        <h3>Geospatial computing techniques and foundational topics</h3>
+        <ul>
+            <li>Interoperability and standards in GIS</li>
+            <li>Spatial, spatiotemporal and multidimensional access methods</li>
+            <li>Spatiotemporal query processing and optimization</li>
+            <li>Computational geometry</li>
+            <li>Geostatistics and spatial statistics</li>
+            <li>Geospatial data quality and error propagation</li>
+            <li>Ethics in geospatial data science</li>
+        </ul>
+
+        <h3>Geospatial applications</h3>
+        <ul>
+            <li>Urban analytics, urban computing, and geospatial aspects of smart cities</li>
+            <li>Spatial decision support systems</li>
+            <li>Disaster prevention and response</li>
+            <li>Environmental and climate studies</li>
+            <li>Movement analysis and transportation studies</li>
+            <li>Epidemiology and public health</li>
+            <li>Location-based social networking and services</li>
+            <li>Spatial inequality</li>
+        </ul>
+
+        <h2>Publication</h2>
+        <p>GEOINFO 2026 proceedings will be published at GEOINFO Series.</p>
+        
+        <h3>Journals</h3>
+        <p>Authors of selected full papers will be invited to submit an extended version in a special edition of the <strong>TO BE ANNOUNCED</strong>.</p>
+    </div>
+
+    <footer>&copy; 2026 GEOINFO</footer>
+    <script>function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }</script>
+</body>
+</html>

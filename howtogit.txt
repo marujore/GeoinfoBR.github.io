@@ -1,9 +1,0 @@
-git clone git@github.com:GeoinfoBR/GeoinfoBR.github.io.git 
-git remote set-url origin git@github.com:GeoinfoBR/GeoinfoBR.github.io.git
-cd GeoinfoBR.github.io
-====
-Edit
-====
-git add .
-git commit -m "Programa atualizado"
-git push origin main

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEOINFO 2026 - Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Roboto', sans-serif; background-color: #ffffff; color: #333; line-height: 1.6; }
+        header { background-color: #c8ebfe; padding: 10px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .navbar { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 50px; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { color: #003366; text-decoration: none; font-weight: 500; font-size: 14px; padding: 8px 12px; border-radius: 4px; transition: background 0.3s; }
+        .nav-links a:hover { background-color: rgba(255,255,255,0.5); }
+        .nav-links a.active { background-color: rgba(255,255,255,0.7); font-weight: 700; }
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        h2 { color: #003366; border-bottom: 2px solid #c8ebfe; padding-bottom: 10px; margin-bottom: 20px; }
+        .link-list a { display: block; padding: 15px; background: #f0f8ff; margin-bottom: 10px; border-radius: 4px; border: 1px solid #c8ebfe; }
+        .link-list a:hover { background: #e0f0ff; }
+        .hamburger { display: none; cursor: pointer; font-size: 24px; color: #003366; }
+        @media (max-width: 900px) {
+            .hamburger { display: block; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #c8ebfe; padding: 20px; box-shadow: 0 5px 5px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+        }
+        footer { background-color: #003366; color: white; text-align: center; padding: 20px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="index.html"><img src="logo.png" alt="GEOINFO Logo"></a></div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="call_for_papers.html">Call for Papers</a>
+                <a href="submission.html">Submission</a>
+                <a href="registration.html">Registration</a>
+                <a href="program.html">Program</a>
+                <a href="venue.html">Venue</a>
+                <a href="organization.html">Organization</a>
+                <a href="committee.html">Committee</a>
+                <a href="collection.html" class="active">Collection</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>GEOINFO Collection</h2>
+        <p>All papers published and presented at GEOINFO, since 1999, are available at the following repositories:</p>
+
+        <div class="link-list">
+            <a href="http://mtc-m16d.sid.inpe.br/ibi/8JMKD3MGP7W/3GDK2ML" target="_blank">
+                <strong>INPE's Digital Library</strong><br>
+            </a>
+            
+            <a href="https://dblp.org/db/conf/geoinfo/index.html" target="_blank">
+                <strong>dblp: computer science bibliography</strong><br>
+            </a>
+            
+            <a href="https://www.scopus.com/results/results.uri?sort=plf-f&src=s&st1=Proceedings+of+the+Brazilian+Symposium+on+GeoInformatics" target="_blank">
+                <strong>Scopus: Proceedings of the Brazilian Symposium on GeoInformatics</strong><br>
+            </a>
+        </div>
+
+        <h2>Previous GEOINFO Page</h2>
+        <a href="previous_geoinfo/2025/index.html" target="_blank">
+                <strong>GEOINFO 2025</strong><br>
+            </a>
+    </div>
+
+    <footer>&copy; 2026 GEOINFO</footer>
+    <script>function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }</script>
+</body>
+</html>

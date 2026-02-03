@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEOINFO 2026 - Committee</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #c8ebfe;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #003366;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-links a.active {
+            background-color: rgba(255, 255, 255, 0.7);
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            color: #003366;
+            border-bottom: 2px solid #c8ebfe;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Committee Grid */
+        .committee-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .committee-member {
+            background: #f9f9f9;
+            padding: 10px;
+            border-left: 3px solid #ddd;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #003366;
+        }
+
+        @media (max-width: 900px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #c8ebfe;
+                padding: 20px;
+                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="index.html"><img src="logo.png" alt="GEOINFO Logo"></a></div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="call_for_papers.html">Call for Papers</a>
+                <a href="submission.html">Submission</a>
+                <a href="registration.html">Registration</a>
+                <a href="program.html">Program</a>
+                <a href="venue.html">Venue</a>
+                <a href="organization.html">Organization</a>
+                <a href="committee.html" class="active">Committee</a>
+                <a href="collection.html">Collection</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Program Committee</h2>
+        <div class="committee-list">
+            <div class="committee-member">Alber Hamersson Sanchez - INPE</div>
+            <div class="committee-member">Alby Duarte Rocha - INPE</div>
+            <div class="committee-member">Ana Clara Mourao Moura - UFMG</div>
+            <div class="committee-member">Ana Lucia Bezerra Candeias - UFPE</div>
+            <div class="committee-member">Antonio Miguel Vieira Monteiro - INPE</div>
+            <div class="committee-member">Camilo Rennó - INPE</div>
+            <div class="committee-member">Carina de Macedo - INPE</div>
+            <div class="committee-member">Carlos Alberto Felgueiras - INPE</div>
+            <div class="committee-member">Claudia Almeida - INPE</div>
+            <div class="committee-member">Claudia Robbi Sluter - UFRGS</div>
+            <div class="committee-member">Claudio de Souza Baptista - UFCG</div>
+            <div class="committee-member">Claudio Elizio Calazans Campelo - UFCG</div>
+            <div class="committee-member">Clodoveu Augusto Davis Junior - UFMG</div>
+            <div class="committee-member">Edipo Henrique Cremon - INPE</div>
+            <div class="committee-member">Elcio Hideiti Shiguemori - IEAv</div>
+            <div class="committee-member">Fabiano Morelli - INPE</div>
+            <div class="committee-member">Flavia da Fonseca Feitosa - UFABC</div>
+            <div class="committee-member">Gilberto Ribeiro de Queiroz - INPE</div>
+            <div class="committee-member">Hugo do Nascimento Bendini - UNESP</div>
+            <div class="committee-member">Julio Cesar Dalla Mora Esquerdo - EMBRAPA</div>
+            <div class="committee-member">Karine Reis Ferreira Gomes - INPE</div>
+            <div class="committee-member">Karla Donato Fook - ITA</div>
+            <div class="committee-member">Laercio Massaru Namikawa - INPE</div>
+            <div class="committee-member">Leonardo Bacelar Lima Santos - CEMADEN</div>
+            <div class="committee-member">Liana Oighenstein Anderson - INPE</div>
+            <div class="committee-member">Lubia Vinhas - INPE</div>
+            <div class="committee-member">Marconi de Arruda Pereira - UFSJ</div>
+            <div class="committee-member">Marcos Adami - INPE</div>
+            <div class="committee-member">Maria Isabel Escada - INPE</div>
+            <div class="committee-member">Michel Eustáquio Dantas Chaves - UNESP</div>
+            <div class="committee-member">Pedro Andrade - INPE</div>
+            <div class="committee-member">Rafael Duarte Coelho dos Santos - INPE</div>
+            <div class="committee-member">Raian Vargas Maretto - UT-ITC</div>
+            <div class="committee-member">Rennan de Freitas Bezerra Marujo - INPE</div>
+            <div class="committee-member">Rodrigo Smarzaro da Silva - UFV</div>
+            <div class="committee-member">Rogerio Galante Negri - UNESP</div>
+            <div class="committee-member">Sergio Rosim - INPE</div>
+            <div class="committee-member">Sidnei João Siqueira Sant'Anna - INPE</div>
+            <div class="committee-member">Silvana Amaral Kampel - INPE</div>
+            <div class="committee-member">Sonaira Souza da Silva - UFAC</div>
+            <div class="committee-member">Tathiane Mayumi Anazawa - UNICAMP</div>
+            <div class="committee-member">Thales Sehn Korting - INPE</div>
+            <div class="committee-member">Valeria Cesario Times - UFPE</div>
+            <div class="committee-member">Vander Luis de Souza Freitas - UFOP</div>
+            <div class="committee-member">Vanessa Cristina Oliveira de Souza - UNIFEI</div>
+            <div class="committee-member">Wanderson Costa - FCUL</div>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 GEOINFO</footer>
+    <script>function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }</script>
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEOINFO 2026 - Program</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Roboto', sans-serif; background-color: #ffffff; color: #333; line-height: 1.6; }
+        header { background-color: #c8ebfe; padding: 10px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .navbar { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 50px; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { color: #003366; text-decoration: none; font-weight: 500; font-size: 14px; padding: 8px 12px; border-radius: 4px; transition: background 0.3s; }
+        .nav-links a:hover { background-color: rgba(255,255,255,0.5); }
+        .nav-links a.active { background-color: rgba(255,255,255,0.7); font-weight: 700; }
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        h2 { color: #003366; border-bottom: 2px solid #c8ebfe; padding-bottom: 10px; margin-bottom: 20px; }
+        
+        /* Program Specific Styles */
+        .day-header { background: #0056b3; color: white; padding: 10px 15px; margin-top: 30px; border-radius: 4px; }
+        .session { border-left: 3px solid #c8ebfe; margin: 15px 0; padding: 10px 15px; }
+        .time { font-weight: bold; color: #0056b3; display: inline-block; width: 60px; }
+        .title { font-weight: bold; }
+        .authors { font-size: 0.9em; color: #555; font-style: italic; }
+        .break { background-color: #f9f9f9; border-left: 3px solid #ccc; }
+
+        .hamburger { display: none; cursor: pointer; font-size: 24px; color: #003366; }
+        @media (max-width: 900px) {
+            .hamburger { display: block; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #c8ebfe; padding: 20px; box-shadow: 0 5px 5px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+        }
+        footer { background-color: #003366; color: white; text-align: center; padding: 20px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="index.html"><img src="logo.png" alt="GEOINFO Logo"></a></div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="call_for_papers.html">Call for Papers</a>
+                <a href="submission.html">Submission</a>
+                <a href="registration.html">Registration</a>
+                <a href="program.html" class="active">Program</a>
+                <a href="venue.html">Venue</a>
+                <a href="organization.html">Organization</a>
+                <a href="committee.html">Committee</a>
+                <a href="collection.html">Collection</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Program</h2>
+        
+        <p><strong>For Oral Presentations:</strong> bring the file (preferably in PDF format) in a pen drive.</p>
+        <p><strong>For Posters:</strong> Posters should be 90 cm X 1.0 to 1.2 m.</p>
+
+        <h3 class="day-header">DAY 1 - 2026 December 07</h3>
+        <div class="session break"><span class="time">00:00</span> To be announced</div>
+        <!-- <div class="session break"><span class="time">08:00</span> Registration/Welcome Coffee</div> -->
+        <!-- <div class="session"><span class="time">09:00</span> Opening session</div> -->
+        
+        <!-- <div class="session">
+            <span class="time">09:20</span> <span class="title">SESSION 1 - REMOTE SENSING AND IMAGE ANALYSIS</span>
+            <ul>
+                <li>Assessment of Serra do Japi Conservation Using Remote Sensing Techniques... <br><span class="authors">Bruno Perciani et al.</span></li>
+                <li>Reproducible and empirical method refines Fractional Vegetation Cover mapping... <br><span class="authors">Bruno Adorno et al.</span></li>
+                <li>Characterization of the Spectral Behavior of the Red Tide in São Sebastião... <br><span class="authors">Júlio César dos Santos et al.</span></li>
+                <li>Oil Slicks Detection On The Sea Surface Using WFI Images... <br><span class="authors">Tiffany Mendonça et al.</span></li>
+            </ul>
+        </div>
+        
+        <div class="session">
+            <span class="time">10:40</span> <span class="title">KEYNOTE 1: Mapping Memory</span><br>
+            <span class="authors">Rosa Lasaponara (CNR-Itália)</span>
+        </div> -->
+        
+        <!-- <div class="session break"><span class="time">12:00</span> Lunch break</div>
+
+        <div class="session">
+            <span class="time">13:30</span> <span class="title">SESSION 2 - ENVIRONMENTAL MODELING AND CHANGE DETECTION</span>
+            <p>Papers by Mariane Reis, Cândida Leite, Yuri Seregati, et al.</p>
+        </div>
+        
+        <div class="session break"><span class="time">15:05</span> Coffee break</div>
+
+        <div class="session">
+            <span class="time">15:35</span> <span class="title">SESSION 3 - NATURAL DISASTERS AND RISK ASSESSMENT</span>
+            <p>Papers by Aluizio Maia, Mario Pujatti, Maria Pereira, et al.</p>
+        </div>
+
+        <div class="session">
+            <span class="time">16:50</span> <span class="title">Minicurso 1</span><br>
+            Introdução ao aprendizado profundo em aplicações de sensoriamento remoto
+        </div> -->
+
+        <h3 class="day-header">DAY 2 - 2026 December 08</h3>
+        <div class="session break"><span class="time">00:00</span> To be announced</div>
+        <!-- <div class="session">
+            <span class="time">08:30</span> <span class="title">SESSION 4 - DESIGN AND ANALYSIS</span>
+            <p>Papers by Gesiel Lopes, Anibal Fernandes, Diego Matos, Israel Silva.</p>
+        </div>
+        
+        <div class="session">
+            <span class="time">09:50</span> <span class="title">Sponsor talk</span> - Anderson Medeiros
+        </div>
+        
+        <div class="session break"><span class="time">10:10</span> Coffee break</div>
+        
+        <div class="session">
+            <span class="time">10:40</span> <span class="title">SPECIAL TALK</span> - Thales Körting and Laercio Namikawa
+        </div>
+        
+        <div class="session break"><span class="time">12:00</span> Lunch break</div>
+        
+        <div class="session">
+            <span class="time">13:30</span> <span class="title">SESSION 5 - GEO AI</span>
+            <p>Papers on Machine Learning, Neural Networks, and Prediction Models.</p>
+        </div>
+
+        <div class="session break">
+            <span class="time">15:40</span> <span class="title">Long Coffee break - POSTER SESSION</span>
+        </div>
+
+        <div class="session">
+            <span class="time">16:50</span> <span class="title">Minicurso 2</span><br>
+            Brazil Data Cube
+        </div>
+
+        <div class="session break"><span class="time">18:20</span> SOCIAL EVENT</div> -->
+
+        <h3 class="day-header">DAY 3 - 2026 December 09</h3>
+        <div class="session break"><span class="time">00:00</span> To be announced</div>
+        <!-- <div class="session">
+            <span class="time">08:30</span> <span class="title">SESSION 7 - TRANSPORTATION AND TRAJECTORY DATA</span>
+            <p>Papers by Suzane Machado, Victor Cruz, Edgar Oliveira, Gabriel Costa.</p>
+        </div>
+
+        <div class="session">
+            <span class="time">09:50</span> <span class="title">SESSION 8 - SOCIAL ISSUES</span>
+            <p>Papers by Cátia Sepetauskas, Isabel Chuizaca Espinoza, Pedro Andrade.</p>
+        </div>
+
+        <div class="session">
+            <span class="time">10:50</span> GeoInfo 2026
+        </div> -->
+
+    </div>
+
+    <footer>&copy; 2026 GEOINFO</footer>
+    <script>function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }</script>
+</body>
+</html>

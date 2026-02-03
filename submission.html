@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEOINFO 2026 - Submission</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Shortened style block for brevity - Ensure styles match previous files */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Roboto', sans-serif; background-color: #ffffff; color: #333; line-height: 1.6; }
+        header { background-color: #c8ebfe; padding: 10px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .navbar { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 50px; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { color: #003366; text-decoration: none; font-weight: 500; font-size: 14px; padding: 8px 12px; border-radius: 4px; transition: background 0.3s; }
+        .nav-links a:hover { background-color: rgba(255,255,255,0.5); }
+        .nav-links a.active { background-color: rgba(255,255,255,0.7); font-weight: 700; }
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        h2 { color: #003366; border-bottom: 2px solid #c8ebfe; padding-bottom: 10px; margin-bottom: 20px; }
+        h3 { color: #0056b3; margin: 20px 0 10px; }
+        .box { background-color: #f9f9f9; padding: 20px; border-left: 4px solid #0056b3; margin: 20px 0; }
+        .hamburger { display: none; cursor: pointer; font-size: 24px; color: #003366; }
+        @media (max-width: 900px) {
+            .hamburger { display: block; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #c8ebfe; padding: 20px; box-shadow: 0 5px 5px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+        }
+        footer { background-color: #003366; color: white; text-align: center; padding: 20px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="index.html"><img src="logo.png" alt="GEOINFO Logo"></a></div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="call_for_papers.html">Call for Papers</a>
+                <a href="submission.html" class="active">Submission</a>
+                <a href="registration.html">Registration</a>
+                <a href="program.html">Program</a>
+                <a href="venue.html">Venue</a>
+                <a href="organization.html">Organization</a>
+                <a href="committee.html">Committee</a>
+                <a href="collection.html">Collection</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Paper Preparation Guidelines</h2>
+        <p>Papers should describe original research. Ongoing or recently completed works are welcome. All submissions will be reviewed by multiple members of a highly qualified scientific committee.</p>
+
+        <div class="box">
+            <h3>Submission Categories</h3>
+            <ul>
+                <li><strong>Short papers:</strong> Contributions describing original ongoing research works, consisting of up to 6 pages, in English (preferably), or Portuguese.</li>
+                <li><strong>Full papers:</strong> Contributions describing original recently finished research works, consisting of up to 12 pages, in English.</li>
+                <li><strong>Databases and datasets:</strong> Contributions describing a geospatial dataset organized by its authors, consisting of up to 6 pages.</li>
+                <li><strong>Tools:</strong> Contributions describing original tools and applications, consisting of up to 6 pages.</li>
+            </ul>
+        </div>
+
+        <p>Contributions must be submitted in PDF format, made in accordance with the <strong>TO BE ANNOUNCED</strong> guidelines. <a href="https://" target="_blank">Templates available here</a>.</p>
+
+        <h2>Submission Instructions</h2>
+        <p>The Microsoft CMT service is used for managing the peer-reviewing process for GEOINFO 2026.</p>
+        
+        <h3>Instructions for using CMT</h3>
+        <ol>
+            <li>Access the link to the CMT system.</li>
+            <li>If you have not used the CMT system before, create an account.</li>
+            <li>Log into your account.</li>
+            <li>Select your role as "Author", and the conference "GEOINFO2026".</li>
+            <li>Click on "+ Create new submission" under the "Author Console".</li>
+        </ol>
+    </div>
+
+    <footer>&copy; 2026 GEOINFO</footer>
+    <script>function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }</script>
+</body>
+</html>

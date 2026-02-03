@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEOINFO 2026 - Venue</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Roboto', sans-serif; background-color: #ffffff; color: #333; line-height: 1.6; }
+        header { background-color: #c8ebfe; padding: 10px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .navbar { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 50px; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { color: #003366; text-decoration: none; font-weight: 500; font-size: 14px; padding: 8px 12px; border-radius: 4px; transition: background 0.3s; }
+        .nav-links a:hover { background-color: rgba(255,255,255,0.5); }
+        .nav-links a.active { background-color: rgba(255,255,255,0.7); font-weight: 700; }
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        h2 { color: #003366; border-bottom: 2px solid #c8ebfe; padding-bottom: 10px; margin-bottom: 20px; }
+        .hamburger { display: none; cursor: pointer; font-size: 24px; color: #003366; }
+        .map-responsive { overflow:hidden; padding-bottom:56.25%; position:relative; height:0; }
+        .map-responsive iframe { left:0; top:0; height:100%; width:100%; position:absolute; }
+        @media (max-width: 900px) {
+            .hamburger { display: block; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #c8ebfe; padding: 20px; box-shadow: 0 5px 5px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+        }
+        footer { background-color: #003366; color: white; text-align: center; padding: 20px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="index.html"><img src="logo.png" alt="GEOINFO Logo"></a></div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="call_for_papers.html">Call for Papers</a>
+                <a href="submission.html">Submission</a>
+                <a href="registration.html">Registration</a>
+                <a href="program.html">Program</a>
+                <a href="venue.html" class="active">Venue</a>
+                <a href="organization.html">Organization</a>
+                <a href="committee.html">Committee</a>
+                <a href="collection.html">Collection</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Venue</h2>
+        <p>GEOINFO 2026 will be held presentially at the <strong>National Institute for Space Research (INPE)</strong>, in São José dos Campos, SP, Brazil.</p>
+        <p><strong>Auditorium:</strong> Sérgio Sobral Auditorium</p>
+
+        <br>
+        <h2>Address</h2>
+        <p>National Institute for Space Research (INPE)<br>
+        Av. dos Astronautas, 1758<br>
+        São José dos Campos, SP - Brazil</p>
+
+        <div class="map-responsive" style="margin-top: 20px;">
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.497554556447!2d-45.86178168443152!3d-23.213589984856983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cc4a9e8e5033c7%3A0x8673070404091910!2sInstituto%20Nacional%20de%20Pesquisas%20Espaciais%20(INPE)!5e0!3m2!1sen!2sbr!4v1643900000000!5m2!1sen!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 GEOINFO</footer>
+    <script>function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }</script>
+</body>
+</html>
