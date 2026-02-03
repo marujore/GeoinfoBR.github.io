@@ -1,153 +1,357 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 
 <head>
-    <base href=".">
-    <link rel="stylesheet" type="text/css" media="all" href="../assets/main.css"/>
-    <meta name="description" content="GEOINFO Conference">
-    <meta name="resource-type" content="document">
-    <meta name="distribution" content="global">
-    <meta name="KeyWords" content="Symposium">
-    <meta name="KeyWords" content="GEOINFO 2025">
-    <meta name="KeyWords" content="Geoinformatics">
-    <meta name="KeyWords" content="Brazil">
-    <title>GEOINFO Brazil 2025</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEOINFO 2026 - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- GLOBAL STYLES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fafafa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0056b3;
+        }
+
+        ul {
+            list-style-position: inside;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: #c8ebfe;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        /* Desktop Menu */
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #003366;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-links a.active {
+            background-color: rgba(255, 255, 255, 0.7);
+            font-weight: 700;
+        }
+
+        /* Mobile Menu Toggle */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #003366;
+        }
+
+        /* --- HERO SECTION (VIDEO) --- */
+        .hero {
+            position: relative;
+            height: 60vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero img.hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            z-index: -1;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .home-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 8px;
+            z-index: 1;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+        }
+
+        /* --- CONTENT CONTAINER --- */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            color: #003366;
+            border-bottom: 2px solid #c8ebfe;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: #0056b3;
+            margin: 20px 0 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* --- CALLOUT BOX --- */
+        .box {
+            background-color: #f0f8ff;
+            border-left: 5px solid #0056b3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        .org-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .org-logos img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .org-logos img:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #c8ebfe;
+                padding: 20px;
+                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="banner">
-        <img src="../assets/banner_small.jpg" alt="GEOINFO Banner" width=1000>
-<!--        <div class="top-left">
-            <span class="title1">GEOINFO</span><span class="title2">Brazil</span><span class="year">2025</span>
-        </div> -->
-        <div class="bottom-right">
-            May 19 to 21, 2025 <br> INPE, São José dos Campos, SP, Brazil
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="GEOINFO Logo">
+                </a>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html" class="active">Home</a>
+                <a href="call_for_papers.html">Call for Papers</a>
+                <a href="submission.html">Submission</a>
+                <a href="registration.html">Registration</a>
+                <a href="program.html">Program</a>
+                <a href="venue.html">Venue</a>
+                <a href="organization.html">Organization</a>
+                <a href="committee.html">Committee</a>
+                <a href="collection.html">Collection</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <img src="assets/banner_small.jpg" alt="" class="hero-bg">
+        <div class="home-overlay">
+            <h1>XXVI Brazilian Symposium on Geoinformatics</h1>
+            <h1>GEOINFO 2026</h1>
+            <p>Spatial Data Science and Applications</p>
         </div>
     </div>
 
-    <table class="menu">
-        <tr>
-            <td class="menu">
-                <a class="current" title="Conference Home Page" href=".">Home</a>
-            </td>
-            <td class="menu">
-                <a title="Call for Papers" href="callforpapers">Call for Papers</a>
-            </td>
-            <td class="menu">
-                <a title="Submission" href="submission">Paper submission</a>
-            </td>
-            <td class="menu">
-                <a title="Registration" href="registration">Registration</a>
-            </td>
-            <td class="menu">
-                <a title="Programme" href="programme/">Programme</a>
-            </td>
-            <td class="menu">
-                <a title="Venue" href="venue">Venue</a> 
-            </td>
-            <td class="menu">
-                <a title="Program Committee" href="pcommittee">Program Committee</a>
-            </td>
-            <td class="menu">
-                <a title="Organization" href="organization">Organization</a>
-            </td>
-            <td class="menu">
-                <a title="GEOINFO Collection" href="collection">Collection</a>
-            </td>
-        </tr>
-    </table>
+    <div class="container">
+        <!-- <div style="text-align: center; margin-bottom: 30px;">
+            <span style="background: #ffecb3; padding: 5px 10px; border-radius: 4px; font-weight: bold;">New: Photos of
+                the event!</span>
+        </div> -->
 
-    <h2>XXV Brazilian Symposium on Geoinformatics - GEOINFO 2025</h2>
-    <h3>Spatial Data Science and Applications</h3>
-    
-    <h3><a href="photos/album.html">New: Photos of the event!</a></h3>
-     
-    <p>GEOINFO is a consolidated and traditional event, held since 1999, dedicated to exploring research, 
-     development, and innovative applications in geographic information science and related areas.</p> 
-     
-     <p>Geoinformatics and GIScience are continually advancing, driven by the growing need to understand 
-     events and phenomena that are related to locations and time. This demand has motivated significant 
-     developments in the collection, management, analysis, and presentation of geospatial data over the years. 
-     Researchers and professionals in many fields have become adept at representing, modeling, simulating, 
-     and predicting the behaviors of spatial phenomena.</p>
-     
-	<p>The evolution of geoinformatics extends beyond its own techniques and methods. It is deeply influenced 
-	by the specific needs and characteristics of multiple disciplines, including environmental science, 
-	urban planning, social science, and transportation.</p>
-	
-	<p>This creates an intrinsically interdisciplinary research community, a characteristic of GeoInfo 
-	participants and contributors since its inception.</p>
-	
-	<p>For 2025 and beyond, GEOINFO aims to adopt a new perspective on its areas of interest by framing Geospatial Data Science 
-	as a unifying research paradigm. This perspective is fully aligned with the open and cooperative personality of past events, 
-	and integrates diverse approaches to data collection and management, the computational techniques needed to extract insights 
-	from large volumes of geospatial data, and the transformative potential of innovative applications.</p>
+        <div class="box">
+            <h3>Important Dates</h3>
+            <p><strong>GEOINFO 2026 will be held presentially.</strong></p>
+            <ul>
+                <li><strong>Workshop Submission start:</strong> 2026/April/01 - 2026/June/30</li>
+                <li><strong>Workshop Community Vote:</strong> 2026/July/01 - 2026/July/10</li>
+                <li><strong>Announcement of Accepted Workshops:</strong> 2026/July/13</li>
+                <li><strong>Paper Submission:</strong> 2026/August/01 - 2026/October/18</li>
+                <li><strong>Notification of acceptance</strong> 2026/November/08</li>
+                <li><strong>Camera-ready submission deadline:</strong> 2026/November/15</li>
+                <li><strong>Full Program:</strong> 2026/November/18</li>
+                <li><strong>Symposium:</strong> 2026/December/07 - 2026/December/09</li>
+            </ul>
+        </div>
 
-	<p>GEOINFO ranks among the top 10 conferences of its field by the special interest group on geoinformatics 
-	of the Brazilian Computer Society, and with a corresponding relevant classification in the Computer Science 
-	conference Qualis from CAPES/BR. All papers published and presented at GEOINFO are available at INPE's Digital 
-	Library and other open repositories, such as DBLP and Scopus.</p>
-    
-    <h2>Important Dates</h2>  
-    
-    <div style="background-color: #cfc ; padding: 10px; border: 1px solid green;">
-    <p><strong>GEOINFO 2025 will be held presentially</strong>. Check the important dates:</p>
-    <ul>
-        <li><strong>Submission start</strong>: 11/01/2025</li>
-        <li><strong>Submission deadline</strong>: 30/03/2025 (FINAL!)</li>
-        <li><strong>Notification of acceptance</strong>: <span style="color:red;"> 27/04/2025</span></li>
-        <li><strong>Camera-ready submission deadline</strong>: <span style="color:red;"> 04/05/2025</span></li>
-        <li><strong>Symposium</strong>: 19/05/2025 to 21/05/2025</li>
-    </ul>
-    
+        <h2>About the Event</h2>
+        <p>GEOINFO is a consolidated and traditional event, held since 1999, dedicated to exploring research,
+            development, and innovative applications in geographic information science and related areas.</p>
+
+        <p>Geoinformatics and GIScience are continually advancing, driven by the growing need to understand events and
+            phenomena that are related to locations and time. This demand has motivated significant developments in the
+            collection, management, analysis, and presentation of geospatial data over the years.</p>
+
+        <p>For 2026 and beyond, GEOINFO aims to adopt a new perspective on its areas of interest by framing
+            <strong>Geospatial Data Science</strong> as a unifying research paradigm.
+        </p>
+
+        <p>GEOINFO ranks among the top 10 conferences of its field by the special interest group on geoinformatics of
+            the Brazilian Computer Society.</p>
+
+
+        <!-- <h2>Organization</h2>
+        <p>All questions about submissions should be emailed to: <a
+                href="mailto:geoinformatica.brasil@gmail.com">geoinformatica.brasil@gmail.com</a></p> -->
+
+        <h3>Organization</h3>
+        <div class="org-logos">
+            <a href="https://www.udesc.br/">
+                <img src="assets/circle-udesc.png" alt="UDESC">
+            </a>
+
+            <a href="https://www.gov.br/inpe/pt-br">
+                <img src="assets/circle-inpe.png" alt="INPE">
+            </a>
+        </div>
+
+        <h3>Support</h3>
+        <div class="org-logos">
+            <!-- <a href="https://www.gov.br/inpe/pt-br">
+                <img src="assets/circle-inpe.png" alt="INPE">
+            </a> -->
+
+            <a href="https://selperbrasil.org.br/">
+                <img src="assets/circle-selper.png" alt="SELPER - Capítulo Brasil">
+            </a>
+
+            <!-- <a href="https://clickgeo.com.br/">
+                <img src="assets/circle-ClickGeo.png" alt="CLICKGEO">
+            </a> -->
+
+            <a href="https://data.inpe.br/bdc/web/">
+                <img src="assets/circle-bdc.png" alt="Brazil Data Cube Project">
+            </a>
+
+            <a href="https://liarealab.github.io/liarea_page/">
+                <img src="assets/circle-liarea.png"
+                    alt="LIAREA - Laboratório de Informação Geográfica e Análise Espacial">
+            </a>
+        </div>
     </div>
-    <h4>Organization</h4>
- 	<table>
-        <tr>
-            <td style="text-align: center; vertical-align: middle;">
-                <a href="https://dcc.ufmg.br/">
-                    <img src="../assets/circle-dcc-ufmg.png" width="150"alt="Computing Department, Federal University of Minas Gerais">
-                </a>
-            </td>
-            <td style="text-align: center; vertical-align: middle;">
-                <a href="https://www.gov.br/inpe/pt-br">
-                    <img src="../assets/circle-inpe.png" width="150" alt="National Institute for Space Research">
-                </a>
-            </td>
-        </tr>
-    </table> 
-    
-    <h4>Support</h4>
- 	<table>
-        <tr>
-            <td style="text-align: center; vertical-align: middle;">
-                <a href="https://selperbrasil.org.br/">
-                    <img src="../assets/circle-selper.png" width="150" alt="SELPER - Capítulo Brasil
-Associação de Especialistas Latino-americanos em Sensoriamento Remoto">
-                </a>
-            </td>
-            <td style="text-align: center; vertical-align: middle;">
-                <a href="https://clickgeo.com.br/">
-                    <img src="../assets/circle-ClickGeo.png" width="150" alt="CLICKGEO - Cursos e Pós-Graduações em Geotecnologias">
-                </a>
-            </td>
-            <td style="text-align: center; vertical-align: middle;">
-                <a href="https://data.inpe.br/bdc/web/">
-                    <img src="../assets/circle-bdc.png" width="150" alt="Brazil Data Cube Project">
-                </a>
-            </td>
-            <td style="text-align: center; vertical-align: middle;">
-                <a href="https://liarealab.github.io/liarea_page/">
-                    <img src="../assets/circle-liarea.png" width="150" alt="Laboratório de Inteligência ARtificial para Aplicações AeroEspaciais e Ambientais (LIAREA) - INPE">
-                </a>
-            </td>
-        </tr>
-    </table>
 
-    <div style="border: 1px solid #f27d17; padding: 10px; font-size: 12px;">
-        All questions about submissions should be emailed to <b>geoinformatica.brasil@gmail.com</b>
-    </div>
+    <footer>
+        &copy; 2026 GEOINFO - Geoinformatics Symposium
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            var x = document.getElementById("navLinks");
+            x.classList.toggle("active");
+        }
+    </script>
 </body>
-</html>
 
+</html>
