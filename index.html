@@ -84,8 +84,17 @@
             color: #003366;
         }
 
-        /* --- HERO SECTION (VIDEO) --- */
-        .hero {
+        /* --- HERO SECTION --- */
+        .hero-wrapper {
+            max-width: 1200px;
+            /* largura máxima */
+            margin: 30px auto;
+            /* centraliza e cria espaço lateral */
+            padding: 0 20px;
+            /* respiro em telas pequenas */
+        }
+
+        /* .hero {
             position: relative;
             height: 60vh;
             width: 100%;
@@ -95,9 +104,15 @@
             justify-content: center;
             color: white;
             text-align: center;
+        } */
+        .hero {
+            position: relative;
+            width: 100%;
+            background: #000;
+            /* fundo para quando sobrar espaço */
         }
 
-        .hero img.hero-bg {
+        /* .hero img.hero-bg {
             position: absolute;
             top: 0;
             left: 0;
@@ -107,9 +122,14 @@
             object-fit: cover;
 
             z-index: -1;
+        } */
+        .hero img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        .hero video {
+        /* .hero video {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -120,23 +140,36 @@
             z-index: -1;
             transform: translate(-50%, -50%);
             object-fit: cover;
-        }
+        } */
 
-        .home-overlay {
+        /* .home-overlay {
             background: rgba(0, 0, 0, 0.5);
             padding: 40px;
             border-radius: 8px;
             z-index: 1;
             text-align: left;
+        } */
+        .home-overlay {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.55);
+            padding: 10px;
+            border-radius: 8px;
+            color: white;
+            text-align: right;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2rem;
             margin-bottom: 10px;
+            line-height: 1.1;
         }
 
         .hero p {
             font-size: 1.5rem;
+            line-height: 1.1;
+            text-align: right;
         }
 
         /* --- CONTENT CONTAINER --- */
@@ -229,6 +262,12 @@
                 font-size: 2rem;
             }
         }
+
+        @media (max-width: 768px) {
+            .home-overlay {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -256,12 +295,14 @@
         </div>
     </header>
 
-    <div class="hero">
-        <img src="assets/banner_small.jpg" alt="" class="hero-bg">
-        <div class="home-overlay">
-            <h1>XXVI Brazilian Symposium on Geoinformatics</h1>
-            <h1>GEOINFO 2026</h1>
-            <p>Spatial Data Science and Applications</p>
+    <div class="hero-wrapper">
+        <div class="hero">
+            <img src="assets/banner_small.png" alt="" class="hero-bg">
+            <div class="home-overlay">
+                <h1>XXVI Brazilian Symposium on Geoinformatics</h1>
+                <h1>GEOINFO 2026</h1>
+                <p>Spatial Data Science and Applications</p>
+            </div>
         </div>
     </div>
 
@@ -328,7 +369,7 @@
             <a href="https://2025.sbsr.com.br/sbsr-2025/page/4706-inicio">
                 <img src="assets/circle-sbsr.png" alt="SBSR">
             </a>
-            
+
 
             <a href="https://data.inpe.br/bdc/web/">
                 <img src="assets/circle-bdc.png" alt="Brazil Data Cube Project">
