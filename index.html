@@ -336,6 +336,56 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* --- SUBMISSION BUTTON --- */
+
+.submission-alert {
+    background: linear-gradient(135deg, #dfe4f7 0%, #c7d6ef 100%);
+    border-radius: 12px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+.submission-alert-content{
+    padding:18px 25px;
+    text-align:center;
+}
+
+.submission-alert .alert-badge{
+    background:#081558;
+    color:#fff;
+    padding:5px 15px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.submission-alert h4{
+    color:#081558;
+    font-size:22px;
+    margin:10px 0;
+}
+
+.submission-alert .dates{
+    margin-bottom:18px;
+    color:#081558;
+}
+
+.submission-btn{
+    display:inline-block;
+    background:#081558;
+    color:#fff;
+    padding:12px 30px;
+    border-radius:40px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.submission-btn:hover{
+    background:#24208a;
+    transform:scale(1.03);
+}
+
         /* --- FOOTER --- */
         footer {
             background-color: #003366;
@@ -466,6 +516,16 @@
                 <a href="#" class="register-btn">➡️ REGISTER NOW ⬅️</a>
             </div>
         </div> -->
+
+        <!-- REGISTRATION ALERT - INSCRIÇÕES ABERTAS -->
+        <div class="submission-alert">
+            <div class="submission-alert-content">
+                <span class="alert-badge">SUBMISSION OPEN</span>
+                <h4>Symposium Submission is now open!</h4>
+                <div class="dates">Until October 18, 2026</div>
+                <a href="https://cmt3.research.microsoft.com/GEOINFO2026/Submission/Index" class="submission-btn">SUBMIT NOW</a>
+            </div>
+        </div>
 
         <div class="box">
             <h3>Important Dates</h3>
