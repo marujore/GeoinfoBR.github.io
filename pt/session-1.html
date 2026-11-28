@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEOINFO 2026 - Sessão 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <style>
+        .session-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+        .session-nav { flex-direction: column; flex-wrap: nowrap; gap: 10px; }
+        .session-nav .day-row { align-items: center; display: flex; gap: 12px; }
+        .session-nav .day { color: #003366; flex: 0 0 190px; font-size: 14px; font-weight: 700; }
+        .session-nav .day-row { align-items: stretch; }
+        .session-nav .day { align-self: center; }
+        .session-nav .pills { display: grid; flex: 1; gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .session-nav .pills a .when { font-weight: 400; }
+        .session-nav .pills a .theme { color: #1e3a8a; font-size: 13px; line-height: 1.3; margin-top: 2px; }
+        .session-nav .pills a.current .theme { color: #fff; }
+        .day-heading { color: #003366; font-size: 17px; margin: 26px 0 12px; }
+        .day-heading:first-of-type { margin-top: 0; }
+        .session-nav a { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; color: #1e40af;
+            display: flex; flex-direction: column; font-size: 14px; line-height: 1.35; padding: 7px 12px;
+            text-decoration: none; transition: background .2s; }
+        .session-nav a strong { font-weight: 700; }
+        .session-nav a .when { color: #64748b; font-size: 12px; }
+        .session-nav a.current .when { color: #dbeafe; }
+        .session-nav a:hover { background: #dbeafe; }
+        .session-nav a.current { background: #005384; border-color: #005384; color: #fff; }
+        .session-header { background: #eff6ff; border: 1px solid #bfdbfe; border-top: 4px solid #005384;
+            border-radius: 10px 10px 0 0; padding: 16px 20px; }
+        .session-header .label { color: #1e40af; font-size: 14px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+        .session-header h3 { color: #003366; font-size: 22px; line-height: 1.3; margin: 2px 0 6px; }
+        .session-header .when { color: #64748b; font-size: 14px; }
+        .papers { border: 1px solid #bfdbfe; border-top: 0; border-radius: 0 0 10px 10px; list-style: none; overflow: hidden; }
+        .paper { border-top: 1px solid #e2e8f0; display: flex; gap: 16px; padding: 16px 20px; scroll-margin-top: 90px; }
+        .paper:first-child { border-top: 0; }
+        .paper .time { color: #005384; flex: 0 0 48px; font-size: 14px; font-weight: 700; padding-top: 2px; }
+        .paper .body { flex: 1; min-width: 0; }
+        .paper .title { color: #1e293b; font-weight: 700; line-height: 1.4; }
+        .paper .authors { color: #334155; font-size: 14px; margin-top: 4px; }
+        .paper .authors .inst { color: #64748b; }
+        .paper details { margin-top: 8px; }
+        .paper summary { color: #005384; cursor: pointer; font-size: 14px; font-weight: 500; }
+        .paper details p { color: #334155; font-size: 14px; margin-top: 8px; text-align: justify; }
+        .paper.discussion { background: #f8fafc; color: #64748b; font-size: 14px; font-style: italic; }
+        .paper.discussion .time { color: #64748b; flex-basis: auto; font-style: normal; }
+        .toolbar { display: flex; justify-content: flex-end; margin: -8px 0 10px; }
+        .toolbar button { background: none; border: 0; color: #005384; cursor: pointer; font: inherit; font-size: 14px; font-weight: 500; }
+        .toolbar button:hover { text-decoration: underline; }
+        .pager { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; margin-top: 20px; font-size: 14px; }
+        .pager a { color: #005384; font-weight: 500; }
+        .cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+        .card { background: #eff6ff; border: 1px solid #bfdbfe; border-top: 4px solid #005384; border-radius: 10px;
+            color: inherit; display: flex; flex-direction: column; padding: 16px 18px; text-decoration: none; transition: background .2s; }
+        .card:hover { background: #dbeafe; }
+        .card .label { color: #1e40af; font-size: 13px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+        .card h3 { color: #003366; font-size: 17px; line-height: 1.3; margin: 4px 0 8px; }
+        .card .when { color: #64748b; font-size: 14px; }
+        .card .more { color: #005384; font-size: 14px; font-weight: 700; margin-top: auto; padding-top: 10px; }
+        .intro { margin-bottom: 24px; }
+        .intro a { color: #005384; font-weight: 500; }
+        @media (max-width: 600px) {
+            .paper { flex-direction: column; gap: 2px; padding: 14px 16px; }
+            .paper .time { flex: none; }
+            .session-header { padding: 14px 16px; }
+            .session-nav .day-row { align-items: flex-start; flex-direction: column; gap: 6px; }
+            .session-nav .day { align-self: flex-start; flex: none; }
+            .session-nav .pills { grid-template-columns: 1fr; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="index.html"><img src="../logo.png" alt="GEOINFO Logo"></a></div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Início</a>
+                <a href="call_for_papers.html">Chamada de Trabalhos</a>
+                <a href="submission.html">Submissão</a>
+                <a href="registration.html">Inscrição</a>
+                <a href="program.html" class="active">Programação</a>
+                <a href="venue.html">Local</a>
+                <a href="organization.html">Organização</a>
+                <a href="committee.html">Comitê</a>
+                <a href="collection.html">Acervo</a>
+            </nav>
+            <a href="../session-1.html" class="lang-switch" hreflang="en" title="View in English">EN</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Sessões Orais</h2>
+        <nav class="session-nav" aria-label="Sessões Orais">
+            <div class="day-row">
+                <span class="day">Segunda-feira, 7 de dezembro</span>
+                <div class="pills">
+                    <a href="session-1.html" class="current" aria-current="page"><strong>Sessão 1 <span class="when">· 11:00 – 12:00</span></strong><span class="theme">Remote sensing image analysis: land use and forests</span></a>
+                    <a href="session-2.html"><strong>Sessão 2 <span class="when">· 13:00 – 14:30</span></strong><span class="theme">Remote sensing image analysis: methods and applications</span></a>
+                </div>
+            </div>
+            <div class="day-row">
+                <span class="day">Terça-feira, 8 de dezembro</span>
+                <div class="pills">
+                    <a href="session-3.html"><strong>Sessão 3 <span class="when">· 08:00 – 09:30</span></strong><span class="theme">Geospatial data analysis and mining</span></a>
+                    <a href="session-4.html"><strong>Sessão 4 <span class="when">· 09:30 – 10:30</span></strong><span class="theme">Geospatial data engineering: data cubes, services and data quality</span></a>
+                    <a href="session-5.html"><strong>Sessão 5 <span class="when">· 13:00 – 14:30</span></strong><span class="theme">Urban analytics and spatial inequality</span></a>
+                </div>
+            </div>
+            <div class="day-row">
+                <span class="day">Quarta-feira, 9 de dezembro</span>
+                <div class="pills">
+                    <a href="session-6.html"><strong>Sessão 6 <span class="when">· 08:00 – 09:10</span></strong><span class="theme">Geospatial software, plugins and web platforms</span></a>
+                    <a href="session-7.html"><strong>Sessão 7 <span class="when">· 09:30 – 10:30</span></strong><span class="theme">Environmental and climate studies: fire, weather and hazards</span></a>
+                </div>
+            </div>
+        </nav>
+        <div class="toolbar"><button type="button" id="toggleAbstracts" data-expand="Abrir todos os resumos" data-collapse="Fechar todos os resumos">Abrir todos os resumos</button></div>
+        <section class="session" id="session-1">
+            <div class="session-header">
+                <div class="label">Sessão 1</div>
+                <h3>Remote sensing image analysis: land use and forests</h3>
+                <div class="when">Segunda-feira, 7 de dezembro · 11:00 – 12:00</div>
+            </div>
+            <ul class="papers">
+                <!-- [19] -->
+                <li class="paper" id="paper-19">
+                    <span class="time">11:00</span>
+                    <div class="body">
+                        <div class="title">Analysis of land use and land cover class conversion for mining tailings in Mariana (MG) using Random Forest classification and Landsat 8 images</div>
+                        <div class="authors">Andressa Penha <span class="inst">(Unicamp)</span>, Manoel Rodrigues Neto <span class="inst">(Unicamp)</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>This study had for objective the mapping of land use and land cover for the years of 2015 and 2016 in the region affected by the rupture of the dam of Fundão in Mariana (MG). Satellite imagery from Landsat 8 was used, processed and classified by Random Forest algorithm for mapping, as well as validation methods for the generated model, analysis tools for the results obtained and evaluation metrics. The results demonstrated that the models were robust, the values obtained in Kappa index were almost perfect and the values obtained in F1-Score indicated high classification performance. The iron oxide index highlighted areas affected by the rupture of the dam in the generated maps, indicating the efficiency of the classification by Random Forest.</p>
+                        </details>
+                    </div>
+                </li>
+                <!-- [53] -->
+                <li class="paper" id="paper-53">
+                    <span class="time">11:15</span>
+                    <div class="body">
+                        <div class="title">Multimodal Analysis and Spatial Generalization for Aboveground Biomass Estimation in Secondary Forests</div>
+                        <div class="authors">Roberto Paiva <span class="inst">(UEG - Universidade Estadual de Goiás)</span>, Manuel Ferreira <span class="inst">(UFG Universidade Federal de Goiás)</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>Integrating different remote sensing data with machine learning can extend the capacity to estimate aboveground biomass (AGB) over large areas. Nevertheless, it is still necessary to understand which information effectively contributes to the models and whether the gains obtained hold in new regions. In this study, we used 460 sample units of the Brazilian National Forest Inventory (IFN-Brasil) distributed across the Amazon and the Cerrado, together with multimodal remote sensing information, to assess these questions. The ablation and interpretation experiments have shown that the modalities contribute unequally: structural variables concentrated most of the predictive information, and the combination of structural data with SAR data performed close to the complete set. However, the gain of the multimodal model relative to a linear model based on canopy height alone was small (R2 OOF = 0.427 and 0.391, respectively). Moreover, this gain did not hold when biomes or states were excluded from training, a setting in which the lower-complexity model was superior in most comparisons. The results indicate that multimodal integration can add information to AGB estimation, but that greater variable diversity and model complexity do not ensure spatial transferability.</p>
+                        </details>
+                    </div>
+                </li>
+                <!-- [27] HIDDEN FOR NOW (time is assigned when the paper is enabled in the generator)
+                <li class="paper" id="paper-27">
+                    <span class="time">--:--</span>
+                    <div class="body">
+                        <div class="title">Predicting Wildfires Within the Cerrado Biome Using Artificial Intelligence and Remote Sensing</div>
+                        <div class="authors">Mateus Fulan <span class="inst">(Universidade Federal de São Carlos (UFSCar))</span>, Vandoir Bourscheidt <span class="inst">(Universidade Federal de São Carlos (UFSCar))</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>This study applies machine learning models for wildfire prediction in the Cerrado biome within São Paulo state and assessed Aboveground Biomass (AGB) as a predictor. A model was trained to estimate AGB using laser (GEDI) and optical remote sensing data. Afterwards, wildfire prediction was performed using an H3 hexagon grid with VIIRS hotspots, estimated AGB and other environmental predictors. XGBoost performed best for AGB estimation (R² = 0.501), though Random Forest was further used due to platform constraints. Missing data imputation improved wildfire prediction (AUC ~0.713). The model without AGB performed best (AUC = 0.713, F1 = 0.544), suggesting short-term environmental dynamics is more influential than biomass for fire prediction.</p>
+                        </details>
+                    </div>
+                </li>
+                -->
+                <!-- [59] -->
+                <li class="paper" id="paper-59">
+                    <span class="time">11:30</span>
+                    <div class="body">
+                        <div class="title">Multimodal Learning for Selective Logging Detection via Fusion of Sentinel-1 and Sentinel-2 Data</div>
+                        <div class="authors">Mariana Santos <span class="inst">(UNB)</span>, Pedro Freitas <span class="inst">(Universidade de Brasília)</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>Automated monitoring of selective logging in the Brazilian Legal Amazon remains challenging because logging produces subtle, spatially heterogeneous disturbances that are difficult to distinguish from natural canopy dynamics. Although the integration of Synthetic Aperture Radar (SAR) and optical imagery is physically motivated, the relative effectiveness of different deep learning paradigms for this task is still poorly understood. This study presents a multimodal benchmark for patch-level detection of disordered selective logging using Sentinel-1 SAR and Sentinel-2 optical data. We construct an early-fusion dataset based on DETER alerts, apply hard negative mining, preserve fine spatial resolution through architectural adaptation, and enforce a polygon-based spatial split to reduce data leakage. Twelve models spanning convolutional neural networks (CNNs), Vision Transformers (ViTs), State Space Models (SSMs), and self-supervised foundation models are evaluated under a common protocol. The multimodal EfficientNet-B0 obtains the best F1-score (0.9314) and an area under the ROC curve (AUC) of 0.9800, while ShuffleNet attains the highest overall AUC among the evaluated models (0.9842). The results indicate that, for 64 × 64 remote-sensing patches, lightweight CNNs and SSM-based models can outperform ViTs and larger foundation models, offering a favorable accuracy efficiency trade-off for operational environmental monitoring.</p>
+                        </details>
+                    </div>
+                </li>
+                <li class="paper discussion"><span class="time">11:45 – 12:00</span><span>Discussão / Perguntas</span></li>
+            </ul>
+        </section>
+
+        <div class="pager"><a href="sessions.html">Todas as sessões</a><a href="program.html">← Voltar para a programação</a><a href="session-2.html">Próxima sessão →</a></div>
+    </div>
+
+    <footer>&copy; 2026 GEOINFO</footer>
+    <script>function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }</script>
+    <script>
+        (function () {
+            var btn = document.getElementById("toggleAbstracts");
+            var all = document.querySelectorAll(".paper details");
+            function update() {
+                var open = Array.prototype.every.call(all, function (d) { return d.open; });
+                btn.textContent = open ? btn.dataset.collapse : btn.dataset.expand;
+            }
+            btn.addEventListener("click", function () {
+                var open = Array.prototype.every.call(all, function (d) { return d.open; });
+                all.forEach(function (d) { d.open = !open; });
+                update();
+            });
+            all.forEach(function (d) { d.addEventListener("toggle", update); });
+            update();
+        })();
+    </script>
+</body>
+</html>

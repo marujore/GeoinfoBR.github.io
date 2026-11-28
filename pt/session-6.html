@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEOINFO 2026 - Sessão 6</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <style>
+        .session-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+        .session-nav { flex-direction: column; flex-wrap: nowrap; gap: 10px; }
+        .session-nav .day-row { align-items: center; display: flex; gap: 12px; }
+        .session-nav .day { color: #003366; flex: 0 0 190px; font-size: 14px; font-weight: 700; }
+        .session-nav .day-row { align-items: stretch; }
+        .session-nav .day { align-self: center; }
+        .session-nav .pills { display: grid; flex: 1; gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .session-nav .pills a .when { font-weight: 400; }
+        .session-nav .pills a .theme { color: #1e3a8a; font-size: 13px; line-height: 1.3; margin-top: 2px; }
+        .session-nav .pills a.current .theme { color: #fff; }
+        .day-heading { color: #003366; font-size: 17px; margin: 26px 0 12px; }
+        .day-heading:first-of-type { margin-top: 0; }
+        .session-nav a { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; color: #1e40af;
+            display: flex; flex-direction: column; font-size: 14px; line-height: 1.35; padding: 7px 12px;
+            text-decoration: none; transition: background .2s; }
+        .session-nav a strong { font-weight: 700; }
+        .session-nav a .when { color: #64748b; font-size: 12px; }
+        .session-nav a.current .when { color: #dbeafe; }
+        .session-nav a:hover { background: #dbeafe; }
+        .session-nav a.current { background: #005384; border-color: #005384; color: #fff; }
+        .session-header { background: #eff6ff; border: 1px solid #bfdbfe; border-top: 4px solid #005384;
+            border-radius: 10px 10px 0 0; padding: 16px 20px; }
+        .session-header .label { color: #1e40af; font-size: 14px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+        .session-header h3 { color: #003366; font-size: 22px; line-height: 1.3; margin: 2px 0 6px; }
+        .session-header .when { color: #64748b; font-size: 14px; }
+        .papers { border: 1px solid #bfdbfe; border-top: 0; border-radius: 0 0 10px 10px; list-style: none; overflow: hidden; }
+        .paper { border-top: 1px solid #e2e8f0; display: flex; gap: 16px; padding: 16px 20px; scroll-margin-top: 90px; }
+        .paper:first-child { border-top: 0; }
+        .paper .time { color: #005384; flex: 0 0 48px; font-size: 14px; font-weight: 700; padding-top: 2px; }
+        .paper .body { flex: 1; min-width: 0; }
+        .paper .title { color: #1e293b; font-weight: 700; line-height: 1.4; }
+        .paper .authors { color: #334155; font-size: 14px; margin-top: 4px; }
+        .paper .authors .inst { color: #64748b; }
+        .paper details { margin-top: 8px; }
+        .paper summary { color: #005384; cursor: pointer; font-size: 14px; font-weight: 500; }
+        .paper details p { color: #334155; font-size: 14px; margin-top: 8px; text-align: justify; }
+        .paper.discussion { background: #f8fafc; color: #64748b; font-size: 14px; font-style: italic; }
+        .paper.discussion .time { color: #64748b; flex-basis: auto; font-style: normal; }
+        .toolbar { display: flex; justify-content: flex-end; margin: -8px 0 10px; }
+        .toolbar button { background: none; border: 0; color: #005384; cursor: pointer; font: inherit; font-size: 14px; font-weight: 500; }
+        .toolbar button:hover { text-decoration: underline; }
+        .pager { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; margin-top: 20px; font-size: 14px; }
+        .pager a { color: #005384; font-weight: 500; }
+        .cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+        .card { background: #eff6ff; border: 1px solid #bfdbfe; border-top: 4px solid #005384; border-radius: 10px;
+            color: inherit; display: flex; flex-direction: column; padding: 16px 18px; text-decoration: none; transition: background .2s; }
+        .card:hover { background: #dbeafe; }
+        .card .label { color: #1e40af; font-size: 13px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+        .card h3 { color: #003366; font-size: 17px; line-height: 1.3; margin: 4px 0 8px; }
+        .card .when { color: #64748b; font-size: 14px; }
+        .card .more { color: #005384; font-size: 14px; font-weight: 700; margin-top: auto; padding-top: 10px; }
+        .intro { margin-bottom: 24px; }
+        .intro a { color: #005384; font-weight: 500; }
+        @media (max-width: 600px) {
+            .paper { flex-direction: column; gap: 2px; padding: 14px 16px; }
+            .paper .time { flex: none; }
+            .session-header { padding: 14px 16px; }
+            .session-nav .day-row { align-items: flex-start; flex-direction: column; gap: 6px; }
+            .session-nav .day { align-self: flex-start; flex: none; }
+            .session-nav .pills { grid-template-columns: 1fr; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="index.html"><img src="../logo.png" alt="GEOINFO Logo"></a></div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Início</a>
+                <a href="call_for_papers.html">Chamada de Trabalhos</a>
+                <a href="submission.html">Submissão</a>
+                <a href="registration.html">Inscrição</a>
+                <a href="program.html" class="active">Programação</a>
+                <a href="venue.html">Local</a>
+                <a href="organization.html">Organização</a>
+                <a href="committee.html">Comitê</a>
+                <a href="collection.html">Acervo</a>
+            </nav>
+            <a href="../session-6.html" class="lang-switch" hreflang="en" title="View in English">EN</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Sessões Orais</h2>
+        <nav class="session-nav" aria-label="Sessões Orais">
+            <div class="day-row">
+                <span class="day">Segunda-feira, 7 de dezembro</span>
+                <div class="pills">
+                    <a href="session-1.html"><strong>Sessão 1 <span class="when">· 11:00 – 12:00</span></strong><span class="theme">Remote sensing image analysis: land use and forests</span></a>
+                    <a href="session-2.html"><strong>Sessão 2 <span class="when">· 13:00 – 14:30</span></strong><span class="theme">Remote sensing image analysis: methods and applications</span></a>
+                </div>
+            </div>
+            <div class="day-row">
+                <span class="day">Terça-feira, 8 de dezembro</span>
+                <div class="pills">
+                    <a href="session-3.html"><strong>Sessão 3 <span class="when">· 08:00 – 09:30</span></strong><span class="theme">Geospatial data analysis and mining</span></a>
+                    <a href="session-4.html"><strong>Sessão 4 <span class="when">· 09:30 – 10:30</span></strong><span class="theme">Geospatial data engineering: data cubes, services and data quality</span></a>
+                    <a href="session-5.html"><strong>Sessão 5 <span class="when">· 13:00 – 14:30</span></strong><span class="theme">Urban analytics and spatial inequality</span></a>
+                </div>
+            </div>
+            <div class="day-row">
+                <span class="day">Quarta-feira, 9 de dezembro</span>
+                <div class="pills">
+                    <a href="session-6.html" class="current" aria-current="page"><strong>Sessão 6 <span class="when">· 08:00 – 09:10</span></strong><span class="theme">Geospatial software, plugins and web platforms</span></a>
+                    <a href="session-7.html"><strong>Sessão 7 <span class="when">· 09:30 – 10:30</span></strong><span class="theme">Environmental and climate studies: fire, weather and hazards</span></a>
+                </div>
+            </div>
+        </nav>
+        <div class="toolbar"><button type="button" id="toggleAbstracts" data-expand="Abrir todos os resumos" data-collapse="Fechar todos os resumos">Abrir todos os resumos</button></div>
+        <section class="session" id="session-6">
+            <div class="session-header">
+                <div class="label">Sessão 6</div>
+                <h3>Geospatial software, plugins and web platforms</h3>
+                <div class="when">Quarta-feira, 9 de dezembro · 08:00 – 09:10</div>
+            </div>
+            <ul class="papers">
+                <!-- [51] -->
+                <li class="paper" id="paper-51">
+                    <span class="time">08:00</span>
+                    <div class="body">
+                        <div class="title">Redesign and Architectural Modernization of a Municipal Cadastral Web GIS for Non-Expert Users</div>
+                        <div class="authors">Robon Silva <span class="inst">(Universidade Federal de Itajubá)</span>, Vanessa Souza <span class="inst">(Universidade Federal de Itajubá)</span>, Bruno Batista <span class="inst">(Universidade Federal de Itajubá)</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>Web Geographic Information Systems (Web GIS) face persistent challenges regarding user interaction, cartographic visualization, and technical performance. This study investigates the combined effects of user interface redesign, geovisualization enhancements, and architectural decoupling in a municipal cadastral Web GIS. System modernization was guided by User Experience (UX) principles and a decoupled front-end architecture. Evaluation involved objective technical audits via Lighthouse and an exploratory user perception survey using an adapted QUIS instrument. Lighthouse scores demonstrated substantial gains in performance (66 to 86), accessibility (100), and SEO (100). The exploratory evaluation with 26 participants revealed strong user acceptance (overall mean score of 4.68/5.0) and high spatial task success rates (up to 92%). Qualitative feedback highlighted the need for improved cartographic contrast and simplified cadastral terminology. The findings demonstrate measurable technical gains and high acceptance of the redesigned application among non-expert users, providing evidence on the needs of citizens interacting with cadastral Web GIS and suggesting that coordinated design and architectural interventions are a viable strategy for this class of applications.</p>
+                        </details>
+                    </div>
+                </li>
+                <!-- [128] -->
+                <li class="paper" id="paper-128">
+                    <span class="time">08:15</span>
+                    <div class="body">
+                        <div class="title">Bringing Google Earth Engine to Decision-Makers: A Web Architecture Applied to Water-Use Regulation</div>
+                        <div class="authors">Luiz Lustosa Pascoal <span class="inst">(Federal University of Goias)</span>, Hugo do Nascimento Bendini <span class="inst">(Instituto Nacional de Pesquisas Espaciais (INPE))</span>, Leila Maria Garcia Fonseca <span class="inst">(Instituto Nacional de Pesquisas Espaciais (INPE))</span>, Caio Augusto Bertolini <span class="inst">(Instituto Nacional de Pesquisas Espaciais (INPE))</span>, Daniel Assumpção Costa Ferreira <span class="inst">(Agência Nacional de Águas e Saneamento Básico (ANA))</span>, Tharles de Sousa Andrade <span class="inst">(Instituto Nacional de Pesquisas Espaciais (INPE))</span>, Thiago Henriques Fontenelle <span class="inst">(Agência Nacional de Águas e Saneamento Básico (ANA))</span>, Ravi Fernandes Mariano <span class="inst">(Instituto Nacional de Pesquisas Espaciais (INPE))</span>, Morris Scherer-Warren <span class="inst">(Agência Nacional de Águas e Saneamento Básico (ANA))</span>, Renato Gomes Silvério <span class="inst">(Instituto Nacional de Pesquisas Espaciais (INPE))</span>, Bruno Collischonn <span class="inst">(Agência Nacional de Águas e Saneamento Básico (ANA))</span>, Pedro Lacerda Santos <span class="inst">(Instituto Nacional de Pesquisas Espaciais (INPE))</span>, Wagner Silva <span class="inst">(Agência Nacional de Águas e Saneamento Básico (ANA))</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>Brazil&#x27;s National Water Agency (ANA) requires satellite evidence to manage irrigation permits, yet Google Earth Engine (GEE) reaches its analysts only through scripts. This paper presents the software architecture of Sat-Irriga and ESPIA, two ANA–INPE web platforms where a single Python job service is the only gateway to GEE. Index curves and map tiles are returned immediately, irrigated-area mapping runs as queued jobs and daily pivot alerts run as scheduled exports, under one REST job contract explained by an analytical cost model. Analysts compare method results visually against imagery and reference layers before approving them. Sat-Irriga monitors 2.45 million hectares and ESPIA 437 pivots daily.</p>
+                        </details>
+                    </div>
+                </li>
+                <!-- [141] HIDDEN FOR NOW (time is assigned when the paper is enabled in the generator)
+                <li class="paper" id="paper-141">
+                    <span class="time">--:--</span>
+                    <div class="body">
+                        <div class="title">Who reaches the meeting point before the wave? An open spatial decision support workflow for tailings-dam self-rescue zones</div>
+                        <div class="authors">Pedro Henrique Reis <span class="inst">(FEAMIG)</span>, Giovana Silva <span class="inst">(UFMG)</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>In the self-rescue zones (ZAS) downstream of Brazilian dams, residents must walk to meeting points before the flood wave arrives. We propose an open spatial decision support workflow that checks this for each address from public data only and test it against the emergency plan of AngloGold Ashanti for the Queiroz tailings-dam complex (Nova Lima, Minas Gerais), reconstructing escape routes on the street network. With a 3-minute warning delay, 7% to 11% of residents, depending on mobility, would not reach safety, and 16% to 33% if limited to the meeting points the plan assigns to the ZAS. A tenth of the street links accounts for 72% of the delay caused by blockages. As half or more of those left behind cannot leave the flood extent, faster warning recovers 2.4 times more people than five new points.</p>
+                        </details>
+                    </div>
+                </li>
+                -->
+                <!-- [40] HIDDEN FOR NOW (time is assigned when the paper is enabled in the generator)
+                <li class="paper" id="paper-40">
+                    <span class="time">--:--</span>
+                    <div class="body">
+                        <div class="title">AgroTag Kriging: A web tool for automatic ordinary kriging</div>
+                        <div class="authors">Gesiel Lopes <span class="inst">(USP)</span>, Amanda Rodrigues <span class="inst">(Embrapa)</span>, Samuel Roggia <span class="inst">(Embrapa)</span>, Luciana Spinelli-Araujo <span class="inst">(Embrapa)</span>, Luiz Eduardo Vicente <span class="inst">(Embrapa)</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>Ordinary kriging (OK) is widely applied for spatial interpolation in agro-environmental studies, but its implementation typically requires expertise in geostatistics, geographic information systems, and computational workflows, which can limit its accessibility to non-specialist users. This study presents AgroTag Kriging, a freely accessible web-based application that integrates and automates the principal stages of an ordinary kriging workflow for generating spatial prediction surfaces and interoperable geospatial products. The application combines input-data validation, coordinate reference system transformation, prediction-grid construction, experimental semivariogram estimation, automated fitting of theoretical variogram models, spatial prediction, and uncertainty assessment within a unified computational environment, thereby reducing the technical overhead associated with geostatistical analysis while preserving the key methodological stages required for critical interpretation of the results.</p>
+                        </details>
+                    </div>
+                </li>
+                -->
+                <li class="paper discussion"><span class="time">08:30 – 09:10</span><span>Discussão / Perguntas</span></li>
+            </ul>
+        </section>
+
+        <div class="pager"><a href="session-5.html">← Sessão anterior</a><a href="program.html">← Voltar para a programação</a><a href="session-7.html">Próxima sessão →</a></div>
+    </div>
+
+    <footer>&copy; 2026 GEOINFO</footer>
+    <script>function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }</script>
+    <script>
+        (function () {
+            var btn = document.getElementById("toggleAbstracts");
+            var all = document.querySelectorAll(".paper details");
+            function update() {
+                var open = Array.prototype.every.call(all, function (d) { return d.open; });
+                btn.textContent = open ? btn.dataset.collapse : btn.dataset.expand;
+            }
+            btn.addEventListener("click", function () {
+                var open = Array.prototype.every.call(all, function (d) { return d.open; });
+                all.forEach(function (d) { d.open = !open; });
+                update();
+            });
+            all.forEach(function (d) { d.addEventListener("toggle", update); });
+            update();
+        })();
+    </script>
+</body>
+</html>

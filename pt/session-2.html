@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEOINFO 2026 - Sessão 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <style>
+        .session-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+        .session-nav { flex-direction: column; flex-wrap: nowrap; gap: 10px; }
+        .session-nav .day-row { align-items: center; display: flex; gap: 12px; }
+        .session-nav .day { color: #003366; flex: 0 0 190px; font-size: 14px; font-weight: 700; }
+        .session-nav .day-row { align-items: stretch; }
+        .session-nav .day { align-self: center; }
+        .session-nav .pills { display: grid; flex: 1; gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .session-nav .pills a .when { font-weight: 400; }
+        .session-nav .pills a .theme { color: #1e3a8a; font-size: 13px; line-height: 1.3; margin-top: 2px; }
+        .session-nav .pills a.current .theme { color: #fff; }
+        .day-heading { color: #003366; font-size: 17px; margin: 26px 0 12px; }
+        .day-heading:first-of-type { margin-top: 0; }
+        .session-nav a { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; color: #1e40af;
+            display: flex; flex-direction: column; font-size: 14px; line-height: 1.35; padding: 7px 12px;
+            text-decoration: none; transition: background .2s; }
+        .session-nav a strong { font-weight: 700; }
+        .session-nav a .when { color: #64748b; font-size: 12px; }
+        .session-nav a.current .when { color: #dbeafe; }
+        .session-nav a:hover { background: #dbeafe; }
+        .session-nav a.current { background: #005384; border-color: #005384; color: #fff; }
+        .session-header { background: #eff6ff; border: 1px solid #bfdbfe; border-top: 4px solid #005384;
+            border-radius: 10px 10px 0 0; padding: 16px 20px; }
+        .session-header .label { color: #1e40af; font-size: 14px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+        .session-header h3 { color: #003366; font-size: 22px; line-height: 1.3; margin: 2px 0 6px; }
+        .session-header .when { color: #64748b; font-size: 14px; }
+        .papers { border: 1px solid #bfdbfe; border-top: 0; border-radius: 0 0 10px 10px; list-style: none; overflow: hidden; }
+        .paper { border-top: 1px solid #e2e8f0; display: flex; gap: 16px; padding: 16px 20px; scroll-margin-top: 90px; }
+        .paper:first-child { border-top: 0; }
+        .paper .time { color: #005384; flex: 0 0 48px; font-size: 14px; font-weight: 700; padding-top: 2px; }
+        .paper .body { flex: 1; min-width: 0; }
+        .paper .title { color: #1e293b; font-weight: 700; line-height: 1.4; }
+        .paper .authors { color: #334155; font-size: 14px; margin-top: 4px; }
+        .paper .authors .inst { color: #64748b; }
+        .paper details { margin-top: 8px; }
+        .paper summary { color: #005384; cursor: pointer; font-size: 14px; font-weight: 500; }
+        .paper details p { color: #334155; font-size: 14px; margin-top: 8px; text-align: justify; }
+        .paper.discussion { background: #f8fafc; color: #64748b; font-size: 14px; font-style: italic; }
+        .paper.discussion .time { color: #64748b; flex-basis: auto; font-style: normal; }
+        .toolbar { display: flex; justify-content: flex-end; margin: -8px 0 10px; }
+        .toolbar button { background: none; border: 0; color: #005384; cursor: pointer; font: inherit; font-size: 14px; font-weight: 500; }
+        .toolbar button:hover { text-decoration: underline; }
+        .pager { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; margin-top: 20px; font-size: 14px; }
+        .pager a { color: #005384; font-weight: 500; }
+        .cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+        .card { background: #eff6ff; border: 1px solid #bfdbfe; border-top: 4px solid #005384; border-radius: 10px;
+            color: inherit; display: flex; flex-direction: column; padding: 16px 18px; text-decoration: none; transition: background .2s; }
+        .card:hover { background: #dbeafe; }
+        .card .label { color: #1e40af; font-size: 13px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+        .card h3 { color: #003366; font-size: 17px; line-height: 1.3; margin: 4px 0 8px; }
+        .card .when { color: #64748b; font-size: 14px; }
+        .card .more { color: #005384; font-size: 14px; font-weight: 700; margin-top: auto; padding-top: 10px; }
+        .intro { margin-bottom: 24px; }
+        .intro a { color: #005384; font-weight: 500; }
+        @media (max-width: 600px) {
+            .paper { flex-direction: column; gap: 2px; padding: 14px 16px; }
+            .paper .time { flex: none; }
+            .session-header { padding: 14px 16px; }
+            .session-nav .day-row { align-items: flex-start; flex-direction: column; gap: 6px; }
+            .session-nav .day { align-self: flex-start; flex: none; }
+            .session-nav .pills { grid-template-columns: 1fr; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="index.html"><img src="../logo.png" alt="GEOINFO Logo"></a></div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Início</a>
+                <a href="call_for_papers.html">Chamada de Trabalhos</a>
+                <a href="submission.html">Submissão</a>
+                <a href="registration.html">Inscrição</a>
+                <a href="program.html" class="active">Programação</a>
+                <a href="venue.html">Local</a>
+                <a href="organization.html">Organização</a>
+                <a href="committee.html">Comitê</a>
+                <a href="collection.html">Acervo</a>
+            </nav>
+            <a href="../session-2.html" class="lang-switch" hreflang="en" title="View in English">EN</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Sessões Orais</h2>
+        <nav class="session-nav" aria-label="Sessões Orais">
+            <div class="day-row">
+                <span class="day">Segunda-feira, 7 de dezembro</span>
+                <div class="pills">
+                    <a href="session-1.html"><strong>Sessão 1 <span class="when">· 11:00 – 12:00</span></strong><span class="theme">Remote sensing image analysis: land use and forests</span></a>
+                    <a href="session-2.html" class="current" aria-current="page"><strong>Sessão 2 <span class="when">· 13:00 – 14:30</span></strong><span class="theme">Remote sensing image analysis: methods and applications</span></a>
+                </div>
+            </div>
+            <div class="day-row">
+                <span class="day">Terça-feira, 8 de dezembro</span>
+                <div class="pills">
+                    <a href="session-3.html"><strong>Sessão 3 <span class="when">· 08:00 – 09:30</span></strong><span class="theme">Geospatial data analysis and mining</span></a>
+                    <a href="session-4.html"><strong>Sessão 4 <span class="when">· 09:30 – 10:30</span></strong><span class="theme">Geospatial data engineering: data cubes, services and data quality</span></a>
+                    <a href="session-5.html"><strong>Sessão 5 <span class="when">· 13:00 – 14:30</span></strong><span class="theme">Urban analytics and spatial inequality</span></a>
+                </div>
+            </div>
+            <div class="day-row">
+                <span class="day">Quarta-feira, 9 de dezembro</span>
+                <div class="pills">
+                    <a href="session-6.html"><strong>Sessão 6 <span class="when">· 08:00 – 09:10</span></strong><span class="theme">Geospatial software, plugins and web platforms</span></a>
+                    <a href="session-7.html"><strong>Sessão 7 <span class="when">· 09:30 – 10:30</span></strong><span class="theme">Environmental and climate studies: fire, weather and hazards</span></a>
+                </div>
+            </div>
+        </nav>
+        <div class="toolbar"><button type="button" id="toggleAbstracts" data-expand="Abrir todos os resumos" data-collapse="Fechar todos os resumos">Abrir todos os resumos</button></div>
+        <section class="session" id="session-2">
+            <div class="session-header">
+                <div class="label">Sessão 2</div>
+                <h3>Remote sensing image analysis: methods and applications</h3>
+                <div class="when">Segunda-feira, 7 de dezembro · 13:00 – 14:30</div>
+            </div>
+            <ul class="papers">
+                <!-- [18] -->
+                <li class="paper" id="paper-18">
+                    <span class="time">13:00</span>
+                    <div class="body">
+                        <div class="title">Usability and User Experience Assessment of an Agricultural Application for Coffee Farming</div>
+                        <div class="authors">Luiz Rezende <span class="inst">(Universidade Federal de Itajubá)</span>, Rodrigo Seabra <span class="inst">(Universidade Federal de Itajubá)</span>, Vanessa Souza <span class="inst">(Universidade Federal de Itajubá)</span>, Margarete Volpato <span class="inst">(Empresa de Pesquisa Agropecuária de Minas Gerais)</span>, Vania Silva <span class="inst">(Empresa de Pesquisa Agropecuária de Minas Gerais)</span>, Helena Alves <span class="inst">(Empresa Brasileira de Pesquisa Agropecuária)</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>Driven by Agriculture 4.0, the digital transformation in agribusiness has made mobile devices essential tools in rural management. However, the effectiveness of these technologies directly depends on the quality of the interaction between the user and the interface. This work presents an evaluation of the usability and user experience (UX) of the Regador application, a decision-support system for monitoring water potential in coffee farming in the State of Minas Gerais based on remote sensing data. The methodology adopted was a case study conducted with eight volunteer participants, including producers, technicians, and researchers. Usability tests were applied with the Think Aloud protocol, a profile questionnaire, and the System Usability Scale (SUS). The results revealed that although the application has the potential to support agricultural activities, there are opportunities to improve the registration flow, navigation, and the visibility of certain commands. These findings reinforce the importance of conducting usability assessments for applications aimed at the agricultural sector, especially given the diversity of user profiles.</p>
+                        </details>
+                    </div>
+                </li>
+                <!-- [10] HIDDEN FOR NOW (time is assigned when the paper is enabled in the generator)
+                <li class="paper" id="paper-10">
+                    <span class="time">--:--</span>
+                    <div class="body">
+                        <div class="title">Anchor Compatibility in Aerial Object Detection: Model-Space Geometry, Ground Reference, and a Paired Test of Anchor Rescaling</div>
+                        <div class="authors">Luiz Gustavo Santos Veríssimo <span class="inst">(Universidade Federal de Goiás)</span>, Ronaldo Martins da Cosdta <span class="inst">(Universidade Federal de Goiás)</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>Native aerial-image pixels do not describe the geometry seen by detector localization priors after preprocessing. We audit maximum raw-anchor IoU for SSD300, Faster R-CNN and RetinaNet on HERIDAL and VisDrone, and show that a deterministic scale floor s ≥ A_min√τ accounts for 98.3–100% of all sub-threshold annotations in the audited configurations. Expressed through ground sampling distance the floor becomes an acquisition requirement: a nominal 1.2 m target demands 1.23 cm per pixel, whereas HERIDAL samples at about 2 cm. We then test the remedy the diagnosis implies with a paired training study varying only the anchor scale set (three seeds per arm, deterministic evaluation verified by hash). Rescaling the smallest anchor from 31.8 to 8 model pixels does what the audit predicts: median in-training anchor overlap rises from 0.19 to 0.57, the sub-threshold rate falls from 95.3% to 19.5%, the highest-scoring detections align with the annotation size distribution, and ground-truth coverage at IoU 0.5 rises from 0.923 to 0.958. Yet AP50 falls from 0.223 to 0.084, with within-seed differences of 0.150, 0.131 and 0.135, while truncating the ranking at 100 detections per image costs the rescaled arm 17–23% of its COCO average recall against under 1% for the baseline. The observations are consistent with a limit that has shifted from geometric support to ranking: satisfying the geometric condition is necessary to reach a given raw-anchor overlap, but plainly not sufficient for good detection.</p>
+                        </details>
+                    </div>
+                </li>
+                -->
+                <!-- [168] HIDDEN FOR NOW (time is assigned when the paper is enabled in the generator)
+                <li class="paper" id="paper-168">
+                    <span class="time">--:--</span>
+                    <div class="body">
+                        <div class="title">Individual-Level Georeferencing and Multi-temporal Growth Tracking of Mangrove Saplings from UAV-LiDAR</div>
+                        <div class="authors">Igor Antunes <span class="inst">(OceanPact)</span>, Fernando Giongo <span class="inst">(OceanPact)</span>, Geraldo Rios <span class="inst">(OceanPact)</span>, Tin Muskardin <span class="inst">(OceanPact)</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>Monitoring mangrove restoration relies on labor-intensive and time-consuming plant-by-plant field surveys in tidally constrained terrain. We present a geospatial pipeline that detects, georeferences and tracks individual saplings across repeated UAV-LiDAR surveys. Max-height rasterization reduces the cloud to a surface model, iterative thresholding localizes sparse low-stature targets without assuming canopy closure, and a density-adaptive centroid criterion keeps one persistent identifier per plant. In a controlled experiment with nine metal bars used as artificial saplings, five were driven into the ground by a tape-measured amount between two flights. The resulting height changes were estimated with an RMSE of 4.41 cm, with horizontal repeatability of 5.4 cm.</p>
+                        </details>
+                    </div>
+                </li>
+                -->
+                <!-- [183] HIDDEN FOR NOW (time is assigned when the paper is enabled in the generator)
+                <li class="paper" id="paper-183">
+                    <span class="time">--:--</span>
+                    <div class="body">
+                        <div class="title">Evaluating Spectral Fidelity in Super-Resolution Techniques</div>
+                        <div class="authors">Gesiel Lopes <span class="inst">(USP)</span>, Luiz Vicente <span class="inst">(EMBRAPA)</span>, Luciana Spinelli <span class="inst">(EMBRAPA)</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>Super-resolution (SR) enhances the spatial detail of satellite imagery but may compromise spectral fidelity. This study assessed the spectral consistency between Sentinel-2 imagery and its S2DR3 product at a nominal 1 m resolution over an agricultural area. Ten spectral bands were evaluated using five spectral indices (NDVI, SAVI, NDWI, EVI, and NDBI), dimensionality reduction (PCA, t-SNE, and exploratory LDA), Pixel Purity Index (PPI) endmember extraction, and linear and bilinear spectral unmixing. Radiometric distributions were examined at native pixel sizes, while spectral fidelity was assessed after aggregating S2DR3 to the 10 m reference grid. Values were retained as DN/10,000 because radiometric offsets could not be verified. The results showed a mean spectral angle of 1.9620° and an RMSE of 0.012244, while the first two reference-derived principal components explained 97.15% of the variance. PPI yielded three zero-vote candidates, limiting endmember interpretation, whereas bilinear unmixing reduced some fitting residuals without improving spectral-holdout performance. Image-quality metrics (LPIPS and FID) also produced mixed results. Overall, S2DR3 exhibited spectral consistency with Sentinel-2 at the aggregated scale, but these findings do not establish the physical accuracy of reconstructed 1 m details. The results underscore the need for independent validation of spectral fidelity, endmember purity, and land-cover accuracy in super-resolution applications.</p>
+                        </details>
+                    </div>
+                </li>
+                -->
+                <li class="paper discussion"><span class="time">13:15 – 14:30</span><span>Discussão / Perguntas</span></li>
+            </ul>
+        </section>
+
+        <div class="pager"><a href="session-1.html">← Sessão anterior</a><a href="program.html">← Voltar para a programação</a><a href="session-3.html">Próxima sessão →</a></div>
+    </div>
+
+    <footer>&copy; 2026 GEOINFO</footer>
+    <script>function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }</script>
+    <script>
+        (function () {
+            var btn = document.getElementById("toggleAbstracts");
+            var all = document.querySelectorAll(".paper details");
+            function update() {
+                var open = Array.prototype.every.call(all, function (d) { return d.open; });
+                btn.textContent = open ? btn.dataset.collapse : btn.dataset.expand;
+            }
+            btn.addEventListener("click", function () {
+                var open = Array.prototype.every.call(all, function (d) { return d.open; });
+                all.forEach(function (d) { d.open = !open; });
+                update();
+            });
+            all.forEach(function (d) { d.addEventListener("toggle", update); });
+            update();
+        })();
+    </script>
+</body>
+</html>

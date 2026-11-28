@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEOINFO 2026 - Sessão 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <style>
+        .session-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+        .session-nav { flex-direction: column; flex-wrap: nowrap; gap: 10px; }
+        .session-nav .day-row { align-items: center; display: flex; gap: 12px; }
+        .session-nav .day { color: #003366; flex: 0 0 190px; font-size: 14px; font-weight: 700; }
+        .session-nav .day-row { align-items: stretch; }
+        .session-nav .day { align-self: center; }
+        .session-nav .pills { display: grid; flex: 1; gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .session-nav .pills a .when { font-weight: 400; }
+        .session-nav .pills a .theme { color: #1e3a8a; font-size: 13px; line-height: 1.3; margin-top: 2px; }
+        .session-nav .pills a.current .theme { color: #fff; }
+        .day-heading { color: #003366; font-size: 17px; margin: 26px 0 12px; }
+        .day-heading:first-of-type { margin-top: 0; }
+        .session-nav a { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; color: #1e40af;
+            display: flex; flex-direction: column; font-size: 14px; line-height: 1.35; padding: 7px 12px;
+            text-decoration: none; transition: background .2s; }
+        .session-nav a strong { font-weight: 700; }
+        .session-nav a .when { color: #64748b; font-size: 12px; }
+        .session-nav a.current .when { color: #dbeafe; }
+        .session-nav a:hover { background: #dbeafe; }
+        .session-nav a.current { background: #005384; border-color: #005384; color: #fff; }
+        .session-header { background: #eff6ff; border: 1px solid #bfdbfe; border-top: 4px solid #005384;
+            border-radius: 10px 10px 0 0; padding: 16px 20px; }
+        .session-header .label { color: #1e40af; font-size: 14px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+        .session-header h3 { color: #003366; font-size: 22px; line-height: 1.3; margin: 2px 0 6px; }
+        .session-header .when { color: #64748b; font-size: 14px; }
+        .papers { border: 1px solid #bfdbfe; border-top: 0; border-radius: 0 0 10px 10px; list-style: none; overflow: hidden; }
+        .paper { border-top: 1px solid #e2e8f0; display: flex; gap: 16px; padding: 16px 20px; scroll-margin-top: 90px; }
+        .paper:first-child { border-top: 0; }
+        .paper .time { color: #005384; flex: 0 0 48px; font-size: 14px; font-weight: 700; padding-top: 2px; }
+        .paper .body { flex: 1; min-width: 0; }
+        .paper .title { color: #1e293b; font-weight: 700; line-height: 1.4; }
+        .paper .authors { color: #334155; font-size: 14px; margin-top: 4px; }
+        .paper .authors .inst { color: #64748b; }
+        .paper details { margin-top: 8px; }
+        .paper summary { color: #005384; cursor: pointer; font-size: 14px; font-weight: 500; }
+        .paper details p { color: #334155; font-size: 14px; margin-top: 8px; text-align: justify; }
+        .paper.discussion { background: #f8fafc; color: #64748b; font-size: 14px; font-style: italic; }
+        .paper.discussion .time { color: #64748b; flex-basis: auto; font-style: normal; }
+        .toolbar { display: flex; justify-content: flex-end; margin: -8px 0 10px; }
+        .toolbar button { background: none; border: 0; color: #005384; cursor: pointer; font: inherit; font-size: 14px; font-weight: 500; }
+        .toolbar button:hover { text-decoration: underline; }
+        .pager { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; margin-top: 20px; font-size: 14px; }
+        .pager a { color: #005384; font-weight: 500; }
+        .cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+        .card { background: #eff6ff; border: 1px solid #bfdbfe; border-top: 4px solid #005384; border-radius: 10px;
+            color: inherit; display: flex; flex-direction: column; padding: 16px 18px; text-decoration: none; transition: background .2s; }
+        .card:hover { background: #dbeafe; }
+        .card .label { color: #1e40af; font-size: 13px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+        .card h3 { color: #003366; font-size: 17px; line-height: 1.3; margin: 4px 0 8px; }
+        .card .when { color: #64748b; font-size: 14px; }
+        .card .more { color: #005384; font-size: 14px; font-weight: 700; margin-top: auto; padding-top: 10px; }
+        .intro { margin-bottom: 24px; }
+        .intro a { color: #005384; font-weight: 500; }
+        @media (max-width: 600px) {
+            .paper { flex-direction: column; gap: 2px; padding: 14px 16px; }
+            .paper .time { flex: none; }
+            .session-header { padding: 14px 16px; }
+            .session-nav .day-row { align-items: flex-start; flex-direction: column; gap: 6px; }
+            .session-nav .day { align-self: flex-start; flex: none; }
+            .session-nav .pills { grid-template-columns: 1fr; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="index.html"><img src="../logo.png" alt="GEOINFO Logo"></a></div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Início</a>
+                <a href="call_for_papers.html">Chamada de Trabalhos</a>
+                <a href="submission.html">Submissão</a>
+                <a href="registration.html">Inscrição</a>
+                <a href="program.html" class="active">Programação</a>
+                <a href="venue.html">Local</a>
+                <a href="organization.html">Organização</a>
+                <a href="committee.html">Comitê</a>
+                <a href="collection.html">Acervo</a>
+            </nav>
+            <a href="../session-3.html" class="lang-switch" hreflang="en" title="View in English">EN</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Sessões Orais</h2>
+        <nav class="session-nav" aria-label="Sessões Orais">
+            <div class="day-row">
+                <span class="day">Segunda-feira, 7 de dezembro</span>
+                <div class="pills">
+                    <a href="session-1.html"><strong>Sessão 1 <span class="when">· 11:00 – 12:00</span></strong><span class="theme">Remote sensing image analysis: land use and forests</span></a>
+                    <a href="session-2.html"><strong>Sessão 2 <span class="when">· 13:00 – 14:30</span></strong><span class="theme">Remote sensing image analysis: methods and applications</span></a>
+                </div>
+            </div>
+            <div class="day-row">
+                <span class="day">Terça-feira, 8 de dezembro</span>
+                <div class="pills">
+                    <a href="session-3.html" class="current" aria-current="page"><strong>Sessão 3 <span class="when">· 08:00 – 09:30</span></strong><span class="theme">Geospatial data analysis and mining</span></a>
+                    <a href="session-4.html"><strong>Sessão 4 <span class="when">· 09:30 – 10:30</span></strong><span class="theme">Geospatial data engineering: data cubes, services and data quality</span></a>
+                    <a href="session-5.html"><strong>Sessão 5 <span class="when">· 13:00 – 14:30</span></strong><span class="theme">Urban analytics and spatial inequality</span></a>
+                </div>
+            </div>
+            <div class="day-row">
+                <span class="day">Quarta-feira, 9 de dezembro</span>
+                <div class="pills">
+                    <a href="session-6.html"><strong>Sessão 6 <span class="when">· 08:00 – 09:10</span></strong><span class="theme">Geospatial software, plugins and web platforms</span></a>
+                    <a href="session-7.html"><strong>Sessão 7 <span class="when">· 09:30 – 10:30</span></strong><span class="theme">Environmental and climate studies: fire, weather and hazards</span></a>
+                </div>
+            </div>
+        </nav>
+        <div class="toolbar"><button type="button" id="toggleAbstracts" data-expand="Abrir todos os resumos" data-collapse="Fechar todos os resumos">Abrir todos os resumos</button></div>
+        <section class="session" id="session-3">
+            <div class="session-header">
+                <div class="label">Sessão 3</div>
+                <h3>Geospatial data analysis and mining</h3>
+                <div class="when">Terça-feira, 8 de dezembro · 08:00 – 09:30</div>
+            </div>
+            <ul class="papers">
+                <!-- [80] -->
+                <li class="paper" id="paper-80">
+                    <span class="time">08:00</span>
+                    <div class="body">
+                        <div class="title">Topological Characteristics of the Street Network of São Paulo City, Brazil</div>
+                        <div class="authors">Pedro Augusto Borges dos Santos <span class="inst">(National Institute for Space Research)</span>, Leonardo Bacelar Lima Santos <span class="inst">(National Institute for Space Research)</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>We analyze the topological characteristics of the street network of São Paulo City, Brazil, modeled from OpenStreetMap as a directed multigraph with 122,456 nodes and 304,027 edges. Node degree (k_i), clustering coefficient (c_i), average shortest path length (l_i) and edge betweenness centrality (e_{ij}) were computed and compared with a directed configuration model preserving the degree sequences. The degree distribution is not scale-free and the most common degree is 6; a small subset of edges concentrates the highest e_{ij} values, marking critical segments. Against the random graph, the real network has an average c_i three orders of magnitude higher and an average l_i 12 times longer, reflecting the geographical constraints of street infrastructure.</p>
+                        </details>
+                    </div>
+                </li>
+                <!-- [107] -->
+                <li class="paper" id="paper-107">
+                    <span class="time">08:15</span>
+                    <div class="body">
+                        <div class="title">Análise espaço-temporal e reprodutível da regularidade operacional do BRT do Rio de Janeiro a partir de dados GPS</div>
+                        <div class="authors">Ariel cantarino <span class="inst">(Ime)</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>Este estudo analisa a regularidade operacional do sistema BRT do Rio de Janeiro por meio de registros de posicionamento veicular obtidos em 22 de setembro de 2026. A partir de 114.776 posições válidas, referentes a 611 veículos e 33 linhas, foram reconstruídas 2.160 instâncias de viagem, das quais 991 atenderam aos critérios de completude estabelecidos. A análise identificou 1.382 partidas e 1.317 intervalos consecutivos, permitindo examinar a dispersão dos intervalos e a variabilidade dos tempos de percurso. O coeficiente de variação mediano dos intervalos foi de 0,560, enquanto o dos tempos de percurso foi de 0,077. Os resultados demonstram o potencial dos dados GPS para caracterizar a operação observada, embora as estimativas dependam da cobertura temporal e dos critérios de inferência espacial adotados.</p>
+                        </details>
+                    </div>
+                </li>
+                <!-- [66] -->
+                <li class="paper" id="paper-66">
+                    <span class="time">08:30</span>
+                    <div class="body">
+                        <div class="title">Fraseia Aqui: A Brazilian Portuguese Phrase Geocoder on an Equal-Area Discrete Global Grid System</div>
+                        <div class="authors">Israel Silva <span class="inst">(Instituto Tecnológico de Aeronáutica)</span>, Gabriel Dietzsch <span class="inst">(Instituto de Estudos Avançados)</span>, Elcio Shiguemori <span class="inst">(Instituto de Estudos Avançados)</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>Fraseia Aqui is a phrase-based geocoder for Brazil. Each 5 m cell in its land and coastal-marine coverage receives a four-word Brazilian Portuguese phrase (noun, adjective, verb, adverb) on the equal-area ITACaRT grid. A seeded Feistel permutation assigns verb–adverb pairs to 144,578 coarse 10 km cells, while noun–adjective pairs select fine cells along a continuous curve. The codec is a verified bijection, with a lexicon curated to minimize confusion. For one-word errors, confusable noun swaps move locations by a median of 6 m; about 42% of uniform verb or adverb swaps are rejected; and confusable verb or adverb swaps that decode move locations by a median of about 1,900 km and never less than 20 km.</p>
+                        </details>
+                    </div>
+                </li>
+                <!-- [117] -->
+                <li class="paper" id="paper-117">
+                    <span class="time">08:45</span>
+                    <div class="body">
+                        <div class="title">Multi-Document Question Answering Approach for the Queimadas Program Based on LLMs, RAG, and XAI</div>
+                        <div class="authors">Maria Cruz <span class="inst">(INPE)</span>, Valdivino Júnior <span class="inst">(INPE)</span></div>
+                        <details>
+                            <summary>Resumo</summary>
+                            <p>The Brazilian National Institute for Space Research (INPE) publishes monthly InfoQueima bulletins with information on fire hotspots and burned areas. Answering questions that require information from this collection involves locating and consolidating evidence across technical documents. This study presents QAFire, a multi-document question answering (QA) approach based on Retrieval-Augmented Generation (RAG) for the twelve InfoQueima bulletins published in 2024. The pipeline combines dense and lexical retrieval, month-specific indexes, geographical routing, question-type filtering, and Cross-Encoder reranking. A dataset of 1,102 question-answer records was automatically generated from official table values using Python and pandas, then reviewed to remove ambiguous cases. Five Large Language Models (LLMs) were evaluated on the same document collection and dataset, without fine-tuning. Qwen3-4B achieved 90.56% precision, 94.53% recall, and a mean per-question F1-score of 90.54%, while Llama-3.1-8B achieved 93.19% precision and the lowest field-level hallucination rate (2.48%). The revised hallucination measure adapts RAGAS Faithfulness to the task&#x27;s structured factual fields: it checks the month, geographical location, and hotspot count stated in an answer against the values reported in the official tables. Segment-level SHapley Additive exPlanations (SHAP) were also used to analyze the question and seven retrieved passages for Qwen3-4B and Llama-3.1-8B. The results demonstrate how multi-document retrieval, factual evaluation, and explainability can be combined in a QA approach for environmental information.</p>
+                        </details>
+                    </div>
+                </li>
+                <li class="paper discussion"><span class="time">09:00 – 09:30</span><span>Discussão / Perguntas</span></li>
+            </ul>
+        </section>
+
+        <div class="pager"><a href="session-2.html">← Sessão anterior</a><a href="program.html">← Voltar para a programação</a><a href="session-4.html">Próxima sessão →</a></div>
+    </div>
+
+    <footer>&copy; 2026 GEOINFO</footer>
+    <script>function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }</script>
+    <script>
+        (function () {
+            var btn = document.getElementById("toggleAbstracts");
+            var all = document.querySelectorAll(".paper details");
+            function update() {
+                var open = Array.prototype.every.call(all, function (d) { return d.open; });
+                btn.textContent = open ? btn.dataset.collapse : btn.dataset.expand;
+            }
+            btn.addEventListener("click", function () {
+                var open = Array.prototype.every.call(all, function (d) { return d.open; });
+                all.forEach(function (d) { d.open = !open; });
+                update();
+            });
+            all.forEach(function (d) { d.addEventListener("toggle", update); });
+            update();
+        })();
+    </script>
+</body>
+</html>

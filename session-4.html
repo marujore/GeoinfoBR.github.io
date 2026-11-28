@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEOINFO 2026 - Session 4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+        .session-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+        .session-nav { flex-direction: column; flex-wrap: nowrap; gap: 10px; }
+        .session-nav .day-row { align-items: center; display: flex; gap: 12px; }
+        .session-nav .day { color: #003366; flex: 0 0 190px; font-size: 14px; font-weight: 700; }
+        .session-nav .day-row { align-items: stretch; }
+        .session-nav .day { align-self: center; }
+        .session-nav .pills { display: grid; flex: 1; gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .session-nav .pills a .when { font-weight: 400; }
+        .session-nav .pills a .theme { color: #1e3a8a; font-size: 13px; line-height: 1.3; margin-top: 2px; }
+        .session-nav .pills a.current .theme { color: #fff; }
+        .day-heading { color: #003366; font-size: 17px; margin: 26px 0 12px; }
+        .day-heading:first-of-type { margin-top: 0; }
+        .session-nav a { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; color: #1e40af;
+            display: flex; flex-direction: column; font-size: 14px; line-height: 1.35; padding: 7px 12px;
+            text-decoration: none; transition: background .2s; }
+        .session-nav a strong { font-weight: 700; }
+        .session-nav a .when { color: #64748b; font-size: 12px; }
+        .session-nav a.current .when { color: #dbeafe; }
+        .session-nav a:hover { background: #dbeafe; }
+        .session-nav a.current { background: #005384; border-color: #005384; color: #fff; }
+        .session-header { background: #eff6ff; border: 1px solid #bfdbfe; border-top: 4px solid #005384;
+            border-radius: 10px 10px 0 0; padding: 16px 20px; }
+        .session-header .label { color: #1e40af; font-size: 14px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+        .session-header h3 { color: #003366; font-size: 22px; line-height: 1.3; margin: 2px 0 6px; }
+        .session-header .when { color: #64748b; font-size: 14px; }
+        .papers { border: 1px solid #bfdbfe; border-top: 0; border-radius: 0 0 10px 10px; list-style: none; overflow: hidden; }
+        .paper { border-top: 1px solid #e2e8f0; display: flex; gap: 16px; padding: 16px 20px; scroll-margin-top: 90px; }
+        .paper:first-child { border-top: 0; }
+        .paper .time { color: #005384; flex: 0 0 48px; font-size: 14px; font-weight: 700; padding-top: 2px; }
+        .paper .body { flex: 1; min-width: 0; }
+        .paper .title { color: #1e293b; font-weight: 700; line-height: 1.4; }
+        .paper .authors { color: #334155; font-size: 14px; margin-top: 4px; }
+        .paper .authors .inst { color: #64748b; }
+        .paper details { margin-top: 8px; }
+        .paper summary { color: #005384; cursor: pointer; font-size: 14px; font-weight: 500; }
+        .paper details p { color: #334155; font-size: 14px; margin-top: 8px; text-align: justify; }
+        .paper.discussion { background: #f8fafc; color: #64748b; font-size: 14px; font-style: italic; }
+        .paper.discussion .time { color: #64748b; flex-basis: auto; font-style: normal; }
+        .toolbar { display: flex; justify-content: flex-end; margin: -8px 0 10px; }
+        .toolbar button { background: none; border: 0; color: #005384; cursor: pointer; font: inherit; font-size: 14px; font-weight: 500; }
+        .toolbar button:hover { text-decoration: underline; }
+        .pager { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; margin-top: 20px; font-size: 14px; }
+        .pager a { color: #005384; font-weight: 500; }
+        .cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+        .card { background: #eff6ff; border: 1px solid #bfdbfe; border-top: 4px solid #005384; border-radius: 10px;
+            color: inherit; display: flex; flex-direction: column; padding: 16px 18px; text-decoration: none; transition: background .2s; }
+        .card:hover { background: #dbeafe; }
+        .card .label { color: #1e40af; font-size: 13px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+        .card h3 { color: #003366; font-size: 17px; line-height: 1.3; margin: 4px 0 8px; }
+        .card .when { color: #64748b; font-size: 14px; }
+        .card .more { color: #005384; font-size: 14px; font-weight: 700; margin-top: auto; padding-top: 10px; }
+        .intro { margin-bottom: 24px; }
+        .intro a { color: #005384; font-weight: 500; }
+        @media (max-width: 600px) {
+            .paper { flex-direction: column; gap: 2px; padding: 14px 16px; }
+            .paper .time { flex: none; }
+            .session-header { padding: 14px 16px; }
+            .session-nav .day-row { align-items: flex-start; flex-direction: column; gap: 6px; }
+            .session-nav .day { align-self: flex-start; flex: none; }
+            .session-nav .pills { grid-template-columns: 1fr; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="index.html"><img src="logo.png" alt="GEOINFO Logo"></a></div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="call_for_papers.html">Call for Papers</a>
+                <a href="submission.html">Submission</a>
+                <a href="registration.html">Registration</a>
+                <a href="program.html" class="active">Program</a>
+                <a href="venue.html">Venue</a>
+                <a href="organization.html">Organization</a>
+                <a href="committee.html">Committee</a>
+                <a href="collection.html">Collection</a>
+            </nav>
+            <a href="pt/session-4.html" class="lang-switch" hreflang="pt-BR" title="Ver em português">PT</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Oral Sessions</h2>
+        <nav class="session-nav" aria-label="Oral Sessions">
+            <div class="day-row">
+                <span class="day">Monday, December 7</span>
+                <div class="pills">
+                    <a href="session-1.html"><strong>Session 1 <span class="when">· 11:00 – 12:00</span></strong><span class="theme">Remote sensing image analysis: land use and forests</span></a>
+                    <a href="session-2.html"><strong>Session 2 <span class="when">· 13:00 – 14:30</span></strong><span class="theme">Remote sensing image analysis: methods and applications</span></a>
+                </div>
+            </div>
+            <div class="day-row">
+                <span class="day">Tuesday, December 8</span>
+                <div class="pills">
+                    <a href="session-3.html"><strong>Session 3 <span class="when">· 08:00 – 09:30</span></strong><span class="theme">Geospatial data analysis and mining</span></a>
+                    <a href="session-4.html" class="current" aria-current="page"><strong>Session 4 <span class="when">· 09:30 – 10:30</span></strong><span class="theme">Geospatial data engineering: data cubes, services and data quality</span></a>
+                    <a href="session-5.html"><strong>Session 5 <span class="when">· 13:00 – 14:30</span></strong><span class="theme">Urban analytics and spatial inequality</span></a>
+                </div>
+            </div>
+            <div class="day-row">
+                <span class="day">Wednesday, December 9</span>
+                <div class="pills">
+                    <a href="session-6.html"><strong>Session 6 <span class="when">· 08:00 – 09:10</span></strong><span class="theme">Geospatial software, plugins and web platforms</span></a>
+                    <a href="session-7.html"><strong>Session 7 <span class="when">· 09:30 – 10:30</span></strong><span class="theme">Environmental and climate studies: fire, weather and hazards</span></a>
+                </div>
+            </div>
+        </nav>
+        <div class="toolbar"><button type="button" id="toggleAbstracts" data-expand="Expand all abstracts" data-collapse="Collapse all abstracts">Expand all abstracts</button></div>
+        <section class="session" id="session-4">
+            <div class="session-header">
+                <div class="label">Session 4</div>
+                <h3>Geospatial data engineering: data cubes, services and data quality</h3>
+                <div class="when">Tuesday, December 8 · 09:30 – 10:30</div>
+            </div>
+            <ul class="papers">
+                <!-- [147] -->
+                <li class="paper" id="paper-147">
+                    <span class="time">09:30</span>
+                    <div class="body">
+                        <div class="title">STAC2Cube: A Python Library for Automated Construction of Earth Observation Data Cubes from INPE STAC Collections</div>
+                        <div class="authors">Matheus Rodrigues <span class="inst">(Instituto Nacional de Pesquisas Espaciais)</span>, Evandro Rodrigues <span class="inst">(Instituto Nacional de Pesquisas Espaciais)</span>, Bruna da Silva <span class="inst">(Instituto Nacional de Pesquisas Espaciais)</span>, Rennan Marujo <span class="inst">(Instituto Nacional de Pesquisas Espaciais)</span>, Camilo Rennó <span class="inst">(Instituto Nacional de Pesquisas Espaciais)</span>, Fábio Gama <span class="inst">(Instituto Nacional de Pesquisas Espaciais)</span>, Thales Korting <span class="inst">(Instituto Nacional de Pesquisas Espaciais)</span>, Gilberto de Queiroz <span class="inst">(Instituto Nacional de Pesquisas Espaciais)</span></div>
+                        <details>
+                            <summary>Abstract</summary>
+                            <p>STAC2Cube is a Python library for automated construction of Earth observation data cubes from collections available through INPE’s SpatioTemporal Asset Catalog (STAC) service. It integrates data querying, spatial filtering, variable classification, harmonization to a common grid, overlap aggregation, and provenance recording in an xarray-based structure. Interoperability was evaluated using 18 data configurations, of which 16 produced complete cubes with spatial resolutions from 8 to 64 m. Cube sizes ranged from 70.86 MiB to 24.87 GiB, with execution times between 22.37 and 1,593.64 s. The results indicate that STAC2Cube provides a reproducible workflow for heterogeneous INPE STAC collections.</p>
+                        </details>
+                    </div>
+                </li>
+                <!-- [185] HIDDEN FOR NOW (time is assigned when the paper is enabled in the generator)
+                <li class="paper" id="paper-185">
+                    <span class="time">--:--</span>
+                    <div class="body">
+                        <div class="title">Spatiotemporal Primitives for OMT-G Geo-Objects: Conceptual Modeling and Database Mapping</div>
+                        <div class="authors">Fernanda Ramalho <span class="inst">(Universidade Federal de Minas Gerais)</span>, Clodoveu Davis <span class="inst">(Universidade Federal de Minas Gerais)</span></div>
+                        <details>
+                            <summary>Abstract</summary>
+                            <p>Representing temporal changes in geographic databases requires mechanisms capable of modeling the evolution of spatial objects. This work proposes an extension to the OMT-G model based on a generic constructor, STemporal&lt;T&gt;, from which three spatiotemporal primitives are derived: MovingPoint, EvolvingLine, and EvolvingPolygon. The proposal defines graphical notation, integrity constraints, and mapping rules for spatial database structures. A mapping algorithm is also presented to support the transformation of these primitives into database schemas. The applicability of the approach is illustrated through a case study involving moving objects and complementary conceptual modeling examples.</p>
+                        </details>
+                    </div>
+                </li>
+                -->
+                <!-- [111] HIDDEN FOR NOW (time is assigned when the paper is enabled in the generator)
+                <li class="paper" id="paper-111">
+                    <span class="time">--:--</span>
+                    <div class="body">
+                        <div class="title">Processing Framework for the Compatibility of Multisource Remote Sensing-Based Land Use and Land Cover Data for Agriculture Area Mapping on a Large Scale in Brazil</div>
+                        <div class="authors">Priscilla dos Santos <span class="inst">(National Institute for Space Research)</span>, Marcos Adami <span class="inst">(INPE)</span>, Igor da Silva <span class="inst">(Independent Researcher)</span>, Victor Prudente <span class="inst">(UMich)</span>, Júlio Esquerdo <span class="inst">(Embrapa Digital Agriculture)</span>, Thales Korting <span class="inst">(INPE)</span>, Maria Isabel Escada <span class="inst">(INPE)</span></div>
+                        <details>
+                            <summary>Abstract</summary>
+                            <p>The dissemination of remote sensing data has driven the emergence of diverse multi-scale Land Use and Land Cover (LULC) mappings. However, differences in the classification&#x27;s processes hinder map interoperability, compromising spatiotemporal reliability of land trajectory analyses and estimates. This challenge is critical in Brazil&#x27;s heterogeneous and complex landscape, where a mapping baseline protocol is essential for accurate national statistics and for meeting environmental commitments. This study introduces a processing framework integrating five remote sensing-based LULC datasets to produce harmonized Brazilian agricultural maps to support future agricultural area estimates.</p>
+                        </details>
+                    </div>
+                </li>
+                -->
+                <!-- [130] -->
+                <li class="paper" id="paper-130">
+                    <span class="time">09:45</span>
+                    <div class="body">
+                        <div class="title">Improving the WTSS Python Client: Evolutionary Maintenance and a Monthly NDVI Composite Case Study</div>
+                        <div class="authors">Suellen de Almeida <span class="inst">(ITA)</span>, Rennan Marujo <span class="inst">(INPE)</span>, Karla Fook <span class="inst">(ITA)</span></div>
+                        <details>
+                            <summary>Abstract</summary>
+                            <p>This paper presents improvements to the Python client of the Brazil Data Cube Web Time Series Service (WTSS). The redesign includes time-indexed pandas and xarray outputs, raster export, improved HTTP handling, automated testing, and spatial and interactive plots. To test the client, a case study evaluates polygon-based retrieval and a monthly NDVI composite using 23 Sentinel-2 composites covering 88,682 pixels in Mato Grosso. After quality masking and temporal aggregation, the monthly raster was written with rasterio using the grid reconstructed by the client. The analysis also identified server-side inconsistencies and limitations caused by cloud-contaminated observations.</p>
+                        </details>
+                    </div>
+                </li>
+                <li class="paper discussion"><span class="time">10:00 – 10:30</span><span>Discussion / Q&amp;A</span></li>
+            </ul>
+        </section>
+
+        <div class="pager"><a href="session-3.html">← Previous session</a><a href="program.html">← Back to the program</a><a href="session-5.html">Next session →</a></div>
+    </div>
+
+    <footer>&copy; 2026 GEOINFO</footer>
+    <script>function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }</script>
+    <script>
+        (function () {
+            var btn = document.getElementById("toggleAbstracts");
+            var all = document.querySelectorAll(".paper details");
+            function update() {
+                var open = Array.prototype.every.call(all, function (d) { return d.open; });
+                btn.textContent = open ? btn.dataset.collapse : btn.dataset.expand;
+            }
+            btn.addEventListener("click", function () {
+                var open = Array.prototype.every.call(all, function (d) { return d.open; });
+                all.forEach(function (d) { d.open = !open; });
+                update();
+            });
+            all.forEach(function (d) { d.addEventListener("toggle", update); });
+            update();
+        })();
+    </script>
+</body>
+</html>

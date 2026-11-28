@@ -32,7 +32,7 @@
      inkscape:window-x="0"
      inkscape:window-y="30"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg846" /><!-- Header Bar --><rect
+     inkscape:current-layer="svg846" /><style id="linkStyle">a.session-link{cursor:pointer}a.session-link:hover rect{fill:#dbeafe;stroke:#60a5fa}</style><!-- Header Bar --><rect
      x="0"
      y="0"
      width="1200"
@@ -264,8 +264,8 @@
            x="16"
            y="300"
            style="font-size: 13px; font-weight: 700; fill: #c2410c;"
-           id="text608">Coffee Break</text><text x="328" y="300" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: end;" id="upd2">10:30 - 11:00</text></g><g
-         id="g618"><rect x="0" y="322" width="340" height="96" rx="8" ry="8" style="fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5px;" id="gen18" /><text x="16" y="348" style="font-size: 13px; font-weight: 700; fill: #1e40af; text-anchor: start;" id="gen19">SESSION 1</text><text x="16" y="368" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="gen22">11:00 - 12:00</text></g><g
+           id="text608">Coffee Break</text><text x="328" y="300" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: end;" id="upd2">10:30 - 11:00</text></g><a class="session-link" href="session-1.html" xlink:href="session-1.html" target="_top" id="link-session-1"><title>Session 1 - view papers</title><g
+         id="g618"><rect x="0" y="322" width="340" height="96" rx="8" ry="8" style="fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5px;" id="gen18" /><text x="16" y="348" style="font-size: 13px; font-weight: 700; fill: #1e40af; text-anchor: start;" id="gen19">SESSION 1</text><text x="16" y="366" style="font-size: 11.5px; font-weight: 400; fill: #1e3a8a; text-anchor: start;" id="gen20">Remote sensing image analysis:</text><text x="16" y="380" style="font-size: 11.5px; font-weight: 400; fill: #1e3a8a; text-anchor: start;" id="gen21">land use and forests</text><text x="16" y="400" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="gen22">11:00 - 12:00</text><text x="328" y="400" style="font-size: 11px; font-weight: 700; fill: #1e40af; text-anchor: end; text-decoration: underline;" id="more1">View papers ›</text></g></a><g
          id="g624"><rect
            x="0"
            y="422"
@@ -278,8 +278,8 @@
            x="16"
            y="472"
            style="font-size: 15px; font-weight: 700; fill: #c2410c;"
-           id="text622">Lunch Break</text><text x="16" y="492" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="upd4">12:00 - 13:00</text></g><g
-         id="g632"><rect x="0" y="522" width="340" height="146" rx="8" ry="8" style="fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5px;" id="gen23" /><text x="16" y="548" style="font-size: 13px; font-weight: 700; fill: #1e40af; text-anchor: start;" id="gen24">SESSION 2</text><text x="16" y="568" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="gen27">13:00 - 14:30</text></g><g
+           id="text622">Lunch Break</text><text x="16" y="492" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="upd4">12:00 - 13:00</text></g><a class="session-link" href="session-2.html" xlink:href="session-2.html" target="_top" id="link-session-2"><title>Session 2 - view papers</title><g
+         id="g632"><rect x="0" y="522" width="340" height="146" rx="8" ry="8" style="fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5px;" id="gen23" /><text x="16" y="548" style="font-size: 13px; font-weight: 700; fill: #1e40af; text-anchor: start;" id="gen24">SESSION 2</text><text x="16" y="566" style="font-size: 11.5px; font-weight: 400; fill: #1e3a8a; text-anchor: start;" id="gen25">Remote sensing image analysis:</text><text x="16" y="580" style="font-size: 11.5px; font-weight: 400; fill: #1e3a8a; text-anchor: start;" id="gen26">methods and applications</text><text x="16" y="600" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="gen27">13:00 - 14:30</text><text x="328" y="600" style="font-size: 11px; font-weight: 700; fill: #1e40af; text-anchor: end; text-decoration: underline;" id="more2">View papers ›</text></g></a><g
          id="g640"><rect x="0" y="672" width="340" height="129" rx="8" ry="8" style="fill: #f0fdf4; stroke: #bbf7d0; stroke-width: 1.5px;" id="gen28" /><text x="16" y="698" style="font-size: 13px; font-weight: 700; fill: #166534; text-anchor: start;" id="gen29">KEYNOTE 2</text><text x="16" y="718" style="font-size: 12px; font-weight: 600; fill: #14532d; text-anchor: start;" id="gen30">TorchGeo</text><text x="16" y="736" style="font-size: 11.5px; font-weight: 400; fill: #14532d; text-anchor: start;" id="gen31">Adam Stewart</text><text x="16" y="756" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="gen32">14:30 - 15:50</text></g><g
          id="g648"><rect
            x="0"
@@ -320,9 +320,9 @@
            style="font-size: 11px; font-weight: 500; fill: #64748b;"
            id="text656">16:50 - 18:20</text></g></g><!-- ================= DAY 2 ================= --><g
        transform="translate(470, 0)"
-       id="g746"><g
-         id="g668"><rect x="0" y="2" width="340" height="166" rx="8" ry="8" style="fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5px;" id="gen33" /><text x="16" y="28" style="font-size: 13px; font-weight: 700; fill: #1e40af; text-anchor: start;" id="gen34">SESSION 4</text><text x="16" y="48" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="gen36">08:00 - 09:30</text></g><g
-         id="g676"><rect x="0" y="172" width="340" height="96" rx="8" ry="8" style="fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5px;" id="gen37" /><text x="16" y="198" style="font-size: 13px; font-weight: 700; fill: #1e40af; text-anchor: start;" id="gen38">SESSION 3</text><text x="16" y="218" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="gen40">09:30 - 10:30</text></g><g
+       id="g746"><a class="session-link" href="session-3.html" xlink:href="session-3.html" target="_top" id="link-session-3"><title>Session 3 - view papers</title><g
+         id="g668"><rect x="0" y="2" width="340" height="166" rx="8" ry="8" style="fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5px;" id="rg668" /><text x="16" y="28" style="font-size: 13px; font-weight: 700; fill: #1e40af; text-anchor: start;" id="tg668a">SESSION 3</text><text x="16" y="46" style="font-size: 11.5px; font-weight: 400; fill: #1e3a8a; text-anchor: start;" id="tg668b0">Geospatial data analysis and mining</text><text x="16" y="66" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="tg668c">08:00 - 09:30</text><text x="328" y="66" style="font-size: 11px; font-weight: 700; fill: #1e40af; text-anchor: end; text-decoration: underline;" id="more3">View papers ›</text></g></a><a class="session-link" href="session-4.html" xlink:href="session-4.html" target="_top" id="link-session-4"><title>Session 4 - view papers</title><g
+         id="g676"><rect x="0" y="172" width="340" height="96" rx="8" ry="8" style="fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5px;" id="rg676" /><text x="16" y="198" style="font-size: 13px; font-weight: 700; fill: #1e40af; text-anchor: start;" id="tg676a">SESSION 4</text><text x="16" y="216" style="font-size: 11.5px; font-weight: 400; fill: #1e3a8a; text-anchor: start;" id="tg676b0">Geospatial data engineering:</text><text x="16" y="230" style="font-size: 11.5px; font-weight: 400; fill: #1e3a8a; text-anchor: start;" id="tg676b1">data cubes, services and data quality</text><text x="16" y="250" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="tg676c">09:30 - 10:30</text><text x="328" y="250" style="font-size: 11px; font-weight: 700; fill: #1e40af; text-anchor: end; text-decoration: underline;" id="more4">View papers ›</text></g></a><g
          id="g682"><rect
            x="0"
            y="272"
@@ -349,8 +349,8 @@
            x="16"
            y="472"
            style="font-size: 15px; font-weight: 700; fill: #c2410c;"
-           id="text702">Lunch Break</text><text x="16" y="492" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="upd5">12:00 - 13:00</text></g><g
-         id="g712"><rect x="0" y="522" width="340" height="146" rx="8" ry="8" style="fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5px;" id="gen48" /><text x="16" y="548" style="font-size: 13px; font-weight: 700; fill: #1e40af; text-anchor: start;" id="gen49">SESSION 5</text><text x="16" y="568" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="gen52">13:00 - 14:30</text></g><g
+           id="text702">Lunch Break</text><text x="16" y="492" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="upd5">12:00 - 13:00</text></g><a class="session-link" href="session-5.html" xlink:href="session-5.html" target="_top" id="link-session-5"><title>Session 5 - view papers</title><g
+         id="g712"><rect x="0" y="522" width="340" height="146" rx="8" ry="8" style="fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5px;" id="rg712" /><text x="16" y="548" style="font-size: 13px; font-weight: 700; fill: #1e40af; text-anchor: start;" id="tg712a">SESSION 5</text><text x="16" y="566" style="font-size: 11.5px; font-weight: 400; fill: #1e3a8a; text-anchor: start;" id="tg712b0">Urban analytics and spatial inequality</text><text x="16" y="586" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="tg712c">13:00 - 14:30</text><text x="328" y="586" style="font-size: 11px; font-weight: 700; fill: #1e40af; text-anchor: end; text-decoration: underline;" id="more5">View papers ›</text></g></a><g
          id="g722"><rect x="0" y="672" width="340" height="129" rx="8" ry="8" style="fill: #f0fdf4; stroke: #bbf7d0; stroke-width: 1.5px;" id="gen53" /><text x="16" y="698" style="font-size: 13px; font-weight: 700; fill: #166534; text-anchor: start;" id="gen54">KEYNOTE 3 / Sponsors</text><text x="16" y="718" style="font-size: 12px; font-weight: 600; fill: #14532d; text-anchor: start;" id="gen55">Copernicus Data Space Ecosystem (CDSE)</text><text x="16" y="736" style="font-size: 11.5px; font-weight: 400; fill: #14532d; text-anchor: start;" id="gen56">Dávid Kovács</text><text x="16" y="756" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="gen58">14:30 - 15:50</text></g><g
          id="g730"><rect
            x="0"
@@ -395,8 +395,8 @@
            style="font-size: 11px; font-weight: 500; fill: #64748b;"
            id="text736">16:50 - 18:20</text></g></g><!-- ================= DAY 3 ================= --><g
        transform="translate(820, 0)"
-       id="g842"><g
-         id="g754"><rect x="0" y="2" width="340" height="129" rx="8" ry="8" style="fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5px;" id="gen59" /><text x="16" y="28" style="font-size: 13px; font-weight: 700; fill: #1e40af; text-anchor: start;" id="gen60">SESSION 6</text><text x="16" y="48" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="gen62">08:00 - 09:10</text></g><g
+       id="g842"><a class="session-link" href="session-6.html" xlink:href="session-6.html" target="_top" id="link-session-6"><title>Session 6 - view papers</title><g
+         id="g754"><rect x="0" y="2" width="340" height="129" rx="8" ry="8" style="fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5px;" id="gen59" /><text x="16" y="28" style="font-size: 13px; font-weight: 700; fill: #1e40af; text-anchor: start;" id="gen60">SESSION 6</text><text x="16" y="46" style="font-size: 11.5px; font-weight: 400; fill: #1e3a8a; text-anchor: start;" id="gen61">Geospatial software, plugins and web platforms</text><text x="16" y="66" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="gen62">08:00 - 09:10</text><text x="328" y="66" style="font-size: 11px; font-weight: 700; fill: #1e40af; text-anchor: end; text-decoration: underline;" id="more6">View papers ›</text></g></a><g
          id="g762"><rect
            x="0"
            y="135"
@@ -413,8 +413,8 @@
            x="328"
            y="156"
            style="font-size: 11px; font-weight: 500; fill: #ea580c; text-anchor: end;"
-           id="text760">09:10 - 09:30</text></g><g
-         id="g772"><rect x="0" y="172" width="340" height="96" rx="8" ry="8" style="fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5px;" id="gen63" /><text x="16" y="198" style="font-size: 13px; font-weight: 700; fill: #1e40af; text-anchor: start;" id="gen64">SESSION 7</text><text x="16" y="218" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="gen67">09:30 - 10:30</text></g><g
+           id="text760">09:10 - 09:30</text></g><a class="session-link" href="session-7.html" xlink:href="session-7.html" target="_top" id="link-session-7"><title>Session 7 - view papers</title><g
+         id="g772"><rect x="0" y="172" width="340" height="96" rx="8" ry="8" style="fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5px;" id="gen63" /><text x="16" y="198" style="font-size: 13px; font-weight: 700; fill: #1e40af; text-anchor: start;" id="gen64">SESSION 7</text><text x="16" y="216" style="font-size: 11.5px; font-weight: 400; fill: #1e3a8a; text-anchor: start;" id="gen65">Environmental and climate studies:</text><text x="16" y="230" style="font-size: 11.5px; font-weight: 400; fill: #1e3a8a; text-anchor: start;" id="gen66">fire, weather and hazards</text><text x="16" y="250" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="gen67">09:30 - 10:30</text><text x="328" y="250" style="font-size: 11px; font-weight: 700; fill: #1e40af; text-anchor: end; text-decoration: underline;" id="more7">View papers ›</text></g></a><g
          id="g778"><rect x="0" y="272" width="340" height="96" rx="8" ry="8" style="fill: #fff7ed; stroke: #ffedd5; stroke-width: 1.5px;" id="gen68" /><text x="16" y="312" style="font-size: 13px; font-weight: 700; fill: #c2410c; text-anchor: start;" id="gen69">Extended Coffee Break - POSTERS</text><text x="16" y="332" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: start;" id="gen70">10:30 - 11:30</text></g><g
          id="g788"><rect x="0" y="372" width="340" height="96" rx="8" ry="8" style="fill: #faf5ff; stroke: #e9d5ff; stroke-width: 1.5px;" id="gen71" /><text x="16" y="424" style="font-size: 13px; font-weight: 700; fill: #6b21a8; text-anchor: start;" id="gen72">Closing Remarks + Next GEOINFO</text><text x="328" y="424" style="font-size: 11px; font-weight: 500; fill: #64748b; text-anchor: end;" id="gen73">11:30 - 12:30</text></g><g
          id="g794"><rect

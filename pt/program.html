@@ -33,13 +33,39 @@
         <p><strong>Apresentações orais:</strong> traga o arquivo (preferencialmente em PDF) em um pen drive.</p>
         <p><strong>Pôsteres:</strong> os pôsteres devem ter 90 cm x 1,0 a 1,2 m.</p>
 
-        <a href="../programacao-geoinfo-2026.svg" target="_blank">
-            <img src="../programacao-geoinfo-2026.svg" alt="Programação do GEOINFO 2026" style="width:100%; height:auto; display:block; margin-top:20px;">
-        </a>
+        <p>📄 <a href="sessions.html" style="color:#005384; font-weight:700;">Veja as apresentações orais de cada sessão</a> (ou clique em uma sessão na programação abaixo).</p>
+
+        <object id="programSvg" type="image/svg+xml" data="../programacao-geoinfo-2026.svg" aria-label="Programação do GEOINFO 2026" style="width:100%; height:auto; aspect-ratio:1200/1370; display:block; margin-top:20px;">
+            <img src="../programacao-geoinfo-2026.svg" alt="Programação do GEOINFO 2026" style="width:100%; height:auto; display:block;">
+        </object>
+        <p style="text-align:right; font-size:14px;"><a href="../programacao-geoinfo-2026.svg" target="_blank" style="color:#005384;">Abrir a programação em tamanho real ↗</a></p>
 
     </div>
 
     <footer>&copy; 2026 GEOINFO</footer>
+    <script>
+        // The program SVG is shared with the English site: point its session links to the Portuguese page.
+        (function () {
+            var obj = document.getElementById("programSvg");
+            var XLINK = "http://www.w3.org/1999/xlink";
+            function localizeLinks() {
+                var doc = obj.contentDocument;
+                if (!doc) return;
+                doc.querySelectorAll("a.session-link").forEach(function (a) {
+                    var href = a.getAttribute("href") || "";
+                    if (/^session/.test(href)) {
+                        a.setAttribute("href", "pt/" + href);
+                        a.setAttributeNS(XLINK, "xlink:href", "pt/" + href);
+                    }
+                });
+                doc.querySelectorAll("a.session-link text[id^='more']").forEach(function (t) {
+                    t.textContent = "Ver trabalhos ›";
+                });
+            }
+            obj.addEventListener("load", localizeLinks);
+            localizeLinks();
+        })();
+    </script>
     <script>function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }</script>
 </body>
 </html>
